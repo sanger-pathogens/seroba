@@ -1,0 +1,16 @@
+#ariba_ref_name	ref_name	gene	var_only	flag	reads	cluster	ref_len	ref_base_assembled	pc_ident	ctg	ctg_len	ctg_cov	known_var	var_type	var_seq_type	known_var_change	has_known_var	ref_ctg_change	ref_ctg_effect	ref_start	ref_end	ref_nt	ctg_start	ctg_end	ctg_nt	smtls_total_depth	smtls_nts	smtls_nts_depth	var_description	free_text
+07C	07C	0	0	531	25830	cluster	18402	18402	99.86	cluster.l15.c4.ctg.1	18999	133.9	0	.	n	.	0	A795T	SNP	795	795	A	1105	1105	T	146	T	122	.	.
+07C	07C	0	0	531	25830	cluster	18402	18402	99.86	cluster.l15.c4.ctg.1	18999	133.9	0	.	n	.	0	T12398C	SNP	12398	12398	T	12708	12708	C	116	C	101	.	.
+07C	07C	0	0	531	25830	cluster	18402	18402	99.86	cluster.l15.c4.ctg.1	18999	133.9	0	.	n	.	0	.15849A	INS	15849	15849	T	16161	16161	A	80	A	70	.	.
+07C	07C	0	0	531	25830	cluster	18402	18402	99.86	cluster.l15.c4.ctg.1	18999	133.9	0	.	n	.	0	.15852C	INS	15852	15852	A	16165	16165	C	77	C	68	.	.
+07C	07C	0	0	531	25830	cluster	18402	18402	99.86	cluster.l15.c4.ctg.1	18999	133.9	0	.	n	.	0	.15853C	INS	15853	15853	G	16167	16167	C	76	C	67	.	.
+07C	07C	0	0	531	25830	cluster	18402	18402	99.86	cluster.l15.c4.ctg.1	18999	133.9	0	.	n	.	0	A15858G	SNP	15858	15858	A	16172	16172	G	71	G	62	.	.
+07C	07C	0	0	531	25830	cluster	18402	18402	99.86	cluster.l15.c4.ctg.1	18999	133.9	0	.	n	.	0	T15861A	SNP	15861	15861	T	16175	16175	A	69	A	59	.	.
+07C	07C	0	0	531	25830	cluster	18402	18402	99.86	cluster.l15.c4.ctg.1	18999	133.9	0	.	n	.	0	.15862G	INS	15862	15862	C	16177	16177	G	68	G	58	.	.
+07C	07C	0	0	531	25830	cluster	18402	18402	99.86	cluster.l15.c4.ctg.1	18999	133.9	0	.	n	.	0	T15866A	SNP	15866	15866	T	16180	16180	A	71	A,G	61,1	.	.
+07C	07C	0	0	531	25830	cluster	18402	18402	99.86	cluster.l15.c4.ctg.1	18999	133.9	0	.	n	.	0	A15868G	SNP	15868	15868	A	16182	16182	G	75	G	66	.	.
+07C	07C	0	0	531	25830	cluster	18402	18402	99.86	cluster.l15.c4.ctg.1	18999	133.9	0	.	n	.	0	TA15873.	DEL	15873	15873	T	16185	16185	G	72	G	64	.	.
+07C	07C	0	0	531	25830	cluster	18402	18402	99.86	cluster.l15.c4.ctg.1	18999	133.9	0	.	n	.	0	A15878C	SNP	15878	15878	A	16189	16189	C	75	C	67	.	.
+07C	07C	0	0	531	25830	cluster	18402	18402	99.86	cluster.l15.c4.ctg.1	18999	133.9	0	.	n	.	0	C15882T	SNP	15882	15882	C	16192	16192	T	82	T	71	.	.
+07C	07C	0	0	531	25830	cluster	18402	18402	99.86	cluster.l15.c4.ctg.1	18999	133.9	0	.	n	.	0	G15883T	SNP	15883	15883	G	16193	16193	T	81	T	70	.	.
+wcwK_07C	wcwK_07C	1	0	27	1474	cluster_1	1008	1008	100.0	cluster_1.l15.c4.ctg.1	1909	76.2	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.

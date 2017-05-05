@@ -1,0 +1,20 @@
+Predicted Serotype:	09L
+Serotype predicted by ariba	:#ariba_ref_name
+assemblie from ariba as an identy of: 	reads	 with this serotype
+Serotype 	 Genetic Variant
+09A	allele
+09A	snps
+09A	pseudo
+09A	genes
+09N	allele
+09N	snps
+09N	pseudo
+09N	genes
+09V	allele
+09V	snps
+09V	pseudo
+09V	genes
+09L	allele
+09L	snps
+09L	pseudo
+09L	genes

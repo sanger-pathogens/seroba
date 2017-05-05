@@ -1,0 +1,72 @@
+#!/usr/bin/env python3
+import argparse
+import seroba
+
+
+parser = argparse.ArgumentParser(
+    prog='seroba',
+    usage='seroba <command> <options>',
+    description='',
+)
+subparsers = parser.add_subparsers(title='Available commands', help='', metavar='')
+
+#----------------------------PneumoCaT db----------------------------#
+
+subparser_getPneumocat = subparsers.add_parser(
+    'getPneumocat',
+    help='downloads genetic information from PneumoCat',
+    usage='seroba getPneumocat  <out_dir>',
+    description='Downlaods PneumoCat and build an tsv formated meta data file out of it',
+)
+subparser_getPneumocat.add_argument('out_dir', type=str, \
+    help='output directory for PneumoCat Database')
+subparser_getPneumocat.set_defaults(func=seroba.tasks.getPneumocat.run)
+
+#----------------------------Create Databses----------------------------#
+#kmer db, ariba db
+subparser_createDBs = subparsers.add_parser(
+    'createDBs',
+    help='creates Databases for kmc and ariba',
+    usage='seroba createDBs  <database dir> <meta data tsv>',
+    description='Creates a Database for kmc and ariba',
+)
+subparser_createDBs.add_argument('out_dir', type=str, \
+    help='output directory for kmc and ariba  Database')
+subparser_createDBs.add_argument('kmer_size', type=str, \
+    help='kmer_size zou want to use for kmc , recommanded = 51')
+subparser_createDBs.set_defaults(func=seroba.tasks.createDBs.run)
+
+#-------------------------------serotyping--------------------------------#
+
+subparser_runSerotyping = subparsers.add_parser(
+    'runSerotyping',
+    help='creates Databases for kmc and ariba',
+    usage='seroba createDBs  <serotype fasta sequence file> <meta data tsv>',
+    description='Make metadata input to prepareref, using multialignment and SNPs',
+)
+subparser_runSerotyping.add_argument('databases', type=str, \
+    help='path to database directory')
+subparser_runSerotyping.add_argument('fw_reads', type=str, \
+    help='forward read file')
+subparser_runSerotyping.add_argument('bw_reads', type=str, \
+    help='backward read file')
+subparser_runSerotyping.add_argument('prefix', type=str, \
+    help='unique prefix')
+subparser_runSerotyping.set_defaults(func=seroba.tasks.sero_run.run)
+
+#-------------------------------version--------------------------------#
+
+subparser_version = subparsers.add_parser(
+    'version',
+    help='Get versions and exit',
+    usage='seroba version',
+    description='This reports the version of SEROBA, and also looks for all the dependencies (including python modules) and reports all their versions. Tells you if all looks OK or not'
+)
+subparser_version.set_defaults(func=seroba.tasks.version.run)
+
+args = parser.parse_args()
+
+if hasattr(args, 'func'):
+    args.func(args)
+else:
+    parser.print_help()

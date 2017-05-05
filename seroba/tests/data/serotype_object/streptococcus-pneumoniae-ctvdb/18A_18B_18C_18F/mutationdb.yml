@@ -1,0 +1,4 @@
+{genes: {18A: {glf: 0, wciX: 0, wcxM: 0}, 18B: {glf: 1, wciX: 1, wcxM: 0}, 18C: {
+      wciX: 1, wcxM: 0}, 18F: {wciX: 1, wcxM: 1}}, pseudo: {18B: {wciX: [1, [!!python/tuple [
+            168, 171], TGA]]}, 18C: {wciX: [0, [!!python/tuple [168, 171], GGA]]},
+    18F: {wciX: [0, [!!python/tuple [168, 171], GGA]]}}}

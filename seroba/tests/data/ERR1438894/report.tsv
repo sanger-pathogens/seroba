@@ -1,0 +1,7 @@
+#ariba_ref_name	ref_name	gene	var_only	flag	reads	cluster	ref_len	ref_base_assembled	pc_ident	ctg	ctg_len	ctg_cov	known_var	var_type	var_seq_type	known_var_change	has_known_var	ref_ctg_change	ref_ctg_effect	ref_start	ref_end	ref_nt	ctg_start	ctg_end	ctg_nt	smtls_total_depth	smtls_nts	smtls_nts_depth	var_description	free_text
+33F	33F	0	0	513	21192	cluster	14496	10471	99.98	cluster.l15.c30.ctg.1	11186	127.4	0	.	n	.	0	C4291A	SNP	4291	4291	C	266	266	A	180	A	172	.	.
+33F	33F	0	0	513	21192	cluster	14496	10471	99.98	cluster.l15.c30.ctg.1	11186	127.4	0	.	n	.	0	C7045T	SNP	7045	7045	C	3020	3020	T	142	T,G	138,1	.	.
+33F	33F	0	0	513	21192	cluster	14496	4123	100.0	cluster.l15.c30.ctg.2	4543	145.7	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.
+33F	33F	0	0	513	21192	cluster	14496	224	94.22	cluster.l15.c30.ctg.4	252	1.4	0	.	n	.	0	.4122A	INS	4122	4122	A	80	80	A	1	A	0	.	.
+33F	33F	0	0	513	21192	cluster	14496	224	94.22	cluster.l15.c30.ctg.4	252	1.4	0	.	n	.	0	GATGAAGTCTTT4173.	DEL	4173	4173	G	130	130	C	ND	ND	ND	.	.
+wcjE	wcjE	1	0	16	968	cluster_2	1101	522	100.0	cluster_2.l15.c17.ctg.3	1247	66.3	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.

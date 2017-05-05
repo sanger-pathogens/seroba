@@ -1,0 +1,24 @@
+Predicted Serotype:	11A
+Serotype predicted by ariba	:#ariba_ref_name
+assemblie from ariba as an identy of: 	reads	 with this serotype
+Serotype 	 Genetic Variant
+11D	allele
+11D	snps
+11D	pseudo
+11D	genes
+11F	allele
+11F	snps
+11F	pseudo
+11F	genes
+11A	allele
+11A	snps
+11A	pseudo
+11A	genes
+11B	allele
+11B	snps
+11B	pseudo
+11B	genes
+11C	allele
+11C	snps
+11C	pseudo
+11C	genes
