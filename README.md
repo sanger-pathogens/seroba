@@ -1,6 +1,7 @@
-#SeroBA
+# SeroBA
 SeroBA is a kmer based Pipeline to identify the Serotype from Illumina NGS reads for given references. You can use SeroBA to download references from (https://github.com/phe-bioinformatics/PneumoCaT) to do identify the capsular type of S.pneumoniae.
-##Usage
+## Usage
+```
 usage: seroba  getPneumocat out_dir
 
 Downlaods PneumoCat and build an tsv formated meta data file out of it
@@ -26,8 +27,8 @@ positional arguments:
     read1       forward read file
     read2       backward read file
     prefix      unique prefix used for output directory
-    
-##Database
+```    
+## Database
 You can use the CTV von PneumoCat by using seroba  getPneumocat. It is also
 possible so add new serotypes by adding the references sequence to the
 "references.fasta" file in the database folder. Out of  the information provided
@@ -35,7 +36,7 @@ possible so add new serotypes by adding the references sequence to the
  easily put in additional genetic information for any of these serotypes in the
  given format.
 
-##Installation
+## Installation
 SeroBA has the following dependencies, which need to be installed:
   * [Python3][python] version >= 3.3.2
   * [KMC][kmc] version >= 3.0
