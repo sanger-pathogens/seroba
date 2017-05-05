@@ -1,0 +1,3 @@
+input fasta file:	/vagrant/STYPE/temp_ariba1zpgyrw0/temp_fasta.fasta
+input tsv file:	/vagrant/STYPE/temp_ariba1zpgyrw0/temp_meta.tsv
+genetic_code	11

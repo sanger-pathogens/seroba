@@ -1,0 +1,14 @@
+06A	6	06A	1	ref
+06B	6	06B	1	ref
+wciN-1	6	06A	0	allele
+wciN-1	6	06B	0	allele
+wciN-2	6	06C	0	allele
+wciN-2	6	06D	0	allele
+wciN-3	6	06E	0	allele
+wzy_06A	6	06A	0	gene
+wzy_06B	6	06B	0	gene
+wzy_06E	6	06E	0	gene
+wciP_06A	6	06A	0	snps	583	AGT
+wciP_06B	6	06B	0	snps	583	AAT
+wciP_06C	6	06C	0	snps	583	AGT
+wciP_06D	6	06D	0	snps	583	AAT

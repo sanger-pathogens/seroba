@@ -1,0 +1,16 @@
+Predicted Serotype:	07C
+Serotype predicted by ariba	:#ariba_ref_name
+assemblie from ariba as an identy of: 	reads	 with this serotype
+Serotype 	 Genetic Variant
+07B	allele
+07B	snps
+07B	pseudo
+07B	genes
+07C	allele
+07C	snps
+07C	pseudo
+07C	genes
+40	allele
+40	snps
+40	pseudo
+40	genes
