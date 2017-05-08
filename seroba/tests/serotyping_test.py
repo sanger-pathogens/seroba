@@ -42,8 +42,8 @@ class TestSerotyping(unittest.TestCase):
         expected = '06A'
         refs_dir = os.path.join(data_dir,'serotype_object')
         cd_cluster = os.path.join(data_dir,'test_serotype_2_cluster.tsv')
-        fw_read = os.path.join(data_dir,'06B_1.fq')
-        bw_read = os.path.join(data_dir,'06B_2.fq')
+        fw_read = os.path.join(data_dir,'06B_1.fq.gz')
+        bw_read = os.path.join(data_dir,'06B_2.fq.gz')
         meta_data = os.path.join(data_dir,'expected_pneumocat_meta.tsv')
         prefix = '06B_1'
         kmer_size = '51'
@@ -58,10 +58,10 @@ class TestSerotyping(unittest.TestCase):
 
         refs_dir = os.path.join(data_dir,'serotype_object')
         cd_cluster = os.path.join(data_dir,'test_serotype_2_cluster.tsv')
-        fw_read = os.path.join(data_dir,'06B_1.fq')
-        bw_read = os.path.join(data_dir,'06B_2.fq')
+        fw_read = os.path.join(data_dir,'06B_1.fq.gz')
+        bw_read = os.path.join(data_dir,'06B_2.fq.gz')
         meta_data = os.path.join(data_dir,'expected_pneumocat_meta.tsv')
-        prefix = '06B_1'
+        prefix = os.path.join(data_dir,'06B_1')
         reference_fasta =os.path.join(data_dir,'serotype_object','reference.fasta')
         cluster = 'cluster'
         s = serotyping.Serotyping( refs_dir,fw_read, bw_read, prefix)
@@ -105,7 +105,7 @@ class TestSerotyping(unittest.TestCase):
         }
         s._prediction(assemblie_file,cluster)
         self.assertEqual(expected,s.sero)
-        shutil.rmtree(prefix)
+        #shutil.rmtree(prefix)
 
     def test__prediction_09V(self):
         expected = '09V'
