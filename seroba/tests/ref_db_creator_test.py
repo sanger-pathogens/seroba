@@ -115,6 +115,7 @@ class TestRefDbCreator(unittest.TestCase):
         serogroup = '06A'
         ref_db_creator.RefDbCreator._create_ariba_db(fasta_file,cluster_meta_data,cdhit_clusters,serogroup,out_dir)
         db_files = os.listdir('temp/ariba_db/06A')
+        print(os.listdir(os.path.join(data_dir,'ariba_db')))
         for i in range(len(db_files)):
             with self.subTest (i= i):
                 exp = os.path.join(data_dir,'ariba_db',db_files[i])
