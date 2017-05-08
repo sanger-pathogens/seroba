@@ -118,6 +118,7 @@ class TestRefDbCreator(unittest.TestCase):
         for i in range(len(db_files)):
             with self.subTest (i= i):
                 exp = os.path.join(data_dir,'ariba_db',db_files[i])
+                print(exp)
                 self.assertTrue(os.path.isfile(exp) , 'files does not exists')
         shutil.rmtree(out_dir)
 
