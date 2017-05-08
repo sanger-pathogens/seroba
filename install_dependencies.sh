@@ -62,5 +62,5 @@ update_path () {
 
 update_path ${build_dir}
 update_path ${mummer_dir}
-
-pip install ariba biopython pyyaml pynummer
+pip3 install ariba pymummer
+pip install  biopython pyyaml
