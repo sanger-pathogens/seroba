@@ -4,7 +4,7 @@ from seroba import serotyping
 
 def run(options):
     sero = serotyping.Serotyping(options.databases,
-    options.fw_reads,
-    options.bw_reads,
+    options.read1,
+    options.read2,
     options.prefix)
     sero.run()
