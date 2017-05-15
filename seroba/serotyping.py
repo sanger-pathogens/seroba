@@ -259,7 +259,7 @@ class Serotyping:
                 for gene in gene_present_dict:
                     if gene in allel_snp['genes'][serotype]:
                         if allel_snp['genes'][serotype][gene] != gene_present_dict[gene]:
-                            serotype_count[serotype]+=3
+                            serotype_count[serotype]+=4
                         if  gene_present_dict[gene] == '1':
                             relevant_genetic_elements[serotype]['genes'].append(gene)
 
