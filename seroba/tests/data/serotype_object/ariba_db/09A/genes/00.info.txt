@@ -1,0 +1,3 @@
+input fasta file:	/vagrant/serotyping/test_11A/temp_aribal1kzt_rr/temp_fasta_genes.fasta
+input tsv file:	/vagrant/serotyping/test_11A/temp_aribal1kzt_rr/temp_meta_genes.tsv
+genetic_code	11

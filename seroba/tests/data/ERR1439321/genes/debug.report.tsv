@@ -1,0 +1,11 @@
+#ariba_ref_name	ref_name	gene	var_only	flag	reads	cluster	ref_len	ref_base_assembled	pc_ident	ctg	ctg_len	ctg_cov	known_var	var_type	var_seq_type	known_var_change	has_known_var	ref_ctg_change	ref_ctg_effect	ref_start	ref_end	ref_nt	ctg_start	ctg_end	ctg_nt	smtls_total_depth	smtls_nts	smtls_nts_depth	var_description	free_text
+gct	gct	1	0	539	182	cluster	393	393	97.71	cluster.l15.c4.ctg.1	815	21.9	0	.	p	.	0	.	SYN	10	12	GTA	260	262	GTG	55;55;56	G;T;G	39;39;40	.	.
+gct	gct	1	0	539	182	cluster	393	393	97.71	cluster.l15.c4.ctg.1	815	21.9	0	.	p	.	0	.	SYN	61	63	TTA	311	313	CTA	44;44;45	C;T;A	39;39;40	.	.
+gct	gct	1	0	539	182	cluster	393	393	97.71	cluster.l15.c4.ctg.1	815	21.9	0	.	p	.	0	.	SYN	70	72	GCA	320	322	GCG	41;41;42	G;C;G	37;37;37	.	.
+gct	gct	1	0	539	182	cluster	393	393	97.71	cluster.l15.c4.ctg.1	815	21.9	0	.	p	.	0	.	SYN	109	111	AGC	359	361	AGT	35;35;35	A;G;T	32;32;32	.	.
+gct	gct	1	0	539	182	cluster	393	393	97.71	cluster.l15.c4.ctg.1	815	21.9	0	.	p	.	0	.	SYN	184	186	GCA	434	436	GCG	46;46;46	G;C;G	41;41;41	.	.
+gct	gct	1	0	539	182	cluster	393	393	97.71	cluster.l15.c4.ctg.1	815	21.9	0	.	p	.	0	.	SYN	202	204	CTG	452	454	TTG	46;46;47	T;T;G	43;43;44	.	.
+gct	gct	1	0	539	182	cluster	393	393	97.71	cluster.l15.c4.ctg.1	815	21.9	0	.	p	.	0	S71P	NONSYN	211	213	TCT	461	463	CCT	45;45;45	C;C;T	43;43;43	.	.
+gct	gct	1	0	539	182	cluster	393	393	97.71	cluster.l15.c4.ctg.1	815	21.9	0	.	p	.	0	.	SYN	289	291	AAG	539	541	AAA	22;22;21	A;A;A	20;20;19	.	.
+gct	gct	1	0	539	182	cluster	393	393	97.71	cluster.l15.c4.ctg.1	815	21.9	0	.	p	.	0	I111V	NONSYN	331	333	ATT	581	583	GTT	16;16;16	G;T;T	14;14;14	.	.
+wcrL_11A	wcrL_11A	1	0	27	1116	cluster_1	723	723	100.0	cluster_1.l15.c17.ctg.1	1227	88.3	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.
