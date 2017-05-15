@@ -73,13 +73,19 @@ class Serotyping:
             self.best_serotype = 'NT'
 
     def _run_ariba_on_cluster(self,cluster):
-
-        ref_dir = os.path.join(self.ariba_cluster_db ,self.cluster_serotype_dict[cluster][0]+'/')
-        command = ['ariba run ',ref_dir,self.fw_read,self.bw_read,self.prefix]
-        print(' '.join(command))
+        os.makedirs(self.prefix)
+        ref_dir = os.path.join(self.ariba_cluster_db ,self.cluster_serotype_dict[cluster][0]+'/','ref')
+        command = ['ariba run ',ref_dir,self.fw_read,self.bw_read,os.path.join(self.prefix,'ref')]
         os.system(' '.join(command))
-        os.system('gzip -d '+self.prefix+'/assemblies.fa.gz')
+        ref_dir = os.path.join(self.ariba_cluster_db ,self.cluster_serotype_dict[cluster][0]+'/','genes')
+        command = ['ariba run ',ref_dir,self.fw_read,self.bw_read,os.path.join(self.prefix,'genes')]
+        os.system(' '.join(command))
+        shutil.copyfile(os.path.join(self.prefix,'ref','assemblies.fa.gz'),os.path.join(self.prefix,'assemblies.fa.gz'))
+        shutil.copyfile(os.path.join(self.prefix,'genes','assembled_genes.fa.gz'),os.path.join(self.prefix,'assembled_genes.fa.gz'))
+        os.system('gzip -d '+os.path.join(self.prefix,'assemblies.fa.gz'))
         os.system('gzip -d '+os.path.join(self.prefix,'assembled_genes.fa.gz'))
+        os.system('cat '+ os.path.join(self.prefix,'ref','report.tsv')+' '+os.path.join(self.prefix,'genes','report.tsv')+' > ' + os.path.join(self.prefix,'report.tsv'))
+
 
     @staticmethod
     def serotype6(assemblie_file,report_file):
@@ -292,7 +298,7 @@ class Serotyping:
                                         count = 1
 
                                 if count == 0:
-                                   serotype_count[serotype] +=-2.5 
+                                   serotype_count[serotype] +=-2.5
                                    relevant_genetic_elements[serotype]['pseudo'].append(gene)
                 else:
                     serotype_count[serotype]+=-1
@@ -385,6 +391,11 @@ class Serotyping:
             self.sero, self.imp = Serotyping._find_serotype(assemblie_file,serogroup_fasta,self.meta_data_dict[serogroup],\
                 self.cluster_serotype_dict[cluster],report_file,self.prefix)
             self._print_detailed_output(report_file,self.imp,self.sero)
+            """shutil.copyfile(os.path.join(self.prefix,'ref','assemblies.fa.gz'),os.path.join(self.prefix,'assemblies.fa.gz'))
+            shutil.copyfile(os.path.join(self.prefix,'genes','assembled_genes.fa.gz'),os.path.join(self.prefix,'assembled_genes.fa.gz'))
+            os.system('gzip -d '+os.path.join(self.prefix,'/assemblies.fa.gz'))
+            os.system('gzip -d '+os.path.join(self.prefix,'assembled_genes.fa.gz'))
+            os.sytem('cat '+ os.path.join(self.prefix,'ref','report.tsv')+' '+os.path.join(self.prefix,'genes','report.tsv')+' > ' + os.path.join(self.prefix,'report.tsv'))"""
 
 
     def run(self):
@@ -392,7 +403,7 @@ class Serotyping:
         self.cluster_count = Serotyping._serotype_2_cluster(self.cd_cluster)
         assemblie_file = self.prefix+'/assemblies.fa'
         self._run_kmc()
-
+        print(self.best_serotype)
         if self.best_serotype == 'NT':
             os.system('mkdir '+self.prefix)
             with open(self.prefix+'/pred.tsv', 'a') as fobj:

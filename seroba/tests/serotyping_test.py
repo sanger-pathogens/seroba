@@ -54,8 +54,8 @@ class TestSerotyping(unittest.TestCase):
         s._run_kmc()
         self.assertEqual(expected,s.best_serotype)
 
-    def test_run_ariba_on_cluster(self):
-
+    def test_01_run_ariba_on_cluster(self):
+        print('test ariba')
         refs_dir = os.path.join(data_dir,'serotype_object')
         cd_cluster = os.path.join(data_dir,'test_serotype_2_cluster.tsv')
         fw_read = os.path.join(data_dir,'06B_1.fq.gz')
@@ -72,7 +72,8 @@ class TestSerotyping(unittest.TestCase):
         }
         s._run_ariba_on_cluster(cluster)
 
-    def test__serotype6(self):
+    def test__02_serotype6(self):
+        print('test serotype 6')
         expected = '06B'
         assemblie_file = os.path.join(data_dir,'06B_1','assembled_genes.fa')
         cluster_db_path = os.path.join(data_dir,'ariba_cluster_db','06A')
@@ -81,13 +82,13 @@ class TestSerotyping(unittest.TestCase):
         self.assertEqual(expected,got)
 
 
-    def test__prediction_06(self):
+    def test__03_prediction_06(self):
+        print('test pred 6')
         expected = '06B'
         refs_dir = os.path.join(data_dir,'serotype_object')
         cd_cluster = os.path.join(data_dir,'test_serotype_2_cluster.tsv')
         fw_read = os.path.join(data_dir,'06B_1.fq.gz')
         bw_read = os.path.join(data_dir,'06B_2.fq.gz')
-
         prefix = os.path.join(data_dir,'06B_1')
         cluster = 'cluster'
         assemblie_file = os.path.join(prefix,'assemblies.fa')
@@ -105,7 +106,7 @@ class TestSerotyping(unittest.TestCase):
         }
         s._prediction(assemblie_file,cluster)
         self.assertEqual(expected,s.sero)
-        #shutil.rmtree(prefix)
+        shutil.rmtree(prefix)
 
     def test__prediction_09V(self):
         expected = '09V'
