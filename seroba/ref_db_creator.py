@@ -62,7 +62,7 @@ class RefDbCreator:
                                 records = SeqRecord(record_dict[row[0]].seq,id = row[0],description='')
                                 meta.write(row[0]+'\t0\t0\t.\t.\t.\n')
                                 SeqIO.write(records, fasta, "fasta")
-                    elif 'genes' not in row and 'ref' not in row:
+                    else:
                                 with open (self.temp_fasta_genes,'a') as fasta:
                                     with open(self.temp_meta_genes,'a') as meta:
                                         records = SeqRecord(record_serogroup_dict[row[0]].seq,id = row[0],description='')
@@ -210,7 +210,13 @@ class RefDbCreator:
                     elif row[4] == 'pseudo':
                         meta_data_dict[row[1]]['pseudo'].update({row[2]:{row[0]:row[5]}})
                     elif row[4] == 'genes':
-                        meta_data_dict[row[1]]['genes'].update({row[2]:{row[0]:row[5]}})
+                        print(row)
+                        if row[2] in meta_data_dict[row[1]]['genes']:
+                            print(meta_data_dict[row[1]]['genes'][row[2]])
+                            meta_data_dict[row[1]]['genes'][row[2]][row[0]]=row[5]
+
+                        else:
+                            meta_data_dict[row[1]]['genes'][row[2]]={row[0]:row[5]}
                 elif row[4] == 'ref' and row[1] not in meta_data_dict:
                     meta_data_dict[row[1]] =  {'allele':{},'snps':{},'genes':{},'pseudo':{}}
 
@@ -228,6 +234,8 @@ class RefDbCreator:
 
     def run(self):
         self.meta_dict = self._read_meta_data_tsv(self.meta_data_tsv)
+
+        pprint.pprint(self.meta_dict['11A'])
         os.makedirs(os.path.join(self.out_dir,'ariba_db'))
         cdhit_cluster = RefDbCreator._create_complete_cdhit_cluster(self.meta_data_tsv,self.out_dir)
         self._create_complete_ariba_db(cdhit_cluster)
