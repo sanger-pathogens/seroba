@@ -12,7 +12,7 @@ def run_kmc(sequence_file,kmer_size,temp_dir,prefix):
     if file_format == 'fa':
         param = ' -ci1 -m1 -t1 -fm'
     elif file_format =='fq':
-        param = ' -ci6 -m1 -t1'
+        param = ' -ci4  -m1 -t1'
     print(param)
     command1=[ext_progs.exe('kmc') + ' -k'+kmer_size,param,sequence_file,kmer_count_files,temp_dir]
     print(' '.join(command1))

@@ -51,6 +51,7 @@ class Serotyping:
         temp_dir = tempfile.mkdtemp(prefix = 'temp.kmc', dir=os.getcwd())
         kmer_db_list = os.listdir(self.kmer_db)
         kmer_count = 0.3
+        max_kmer_count = 0.0
         best_serotype = ''
         kmer_count_files = kmc.run_kmc(self.fw_read,self.kmer_size,temp_dir,self.prefix)
         record_dict = SeqIO.to_dict(SeqIO.parse(self.reference_fasta, "fasta"))
@@ -63,11 +64,16 @@ class Serotyping:
             with open( temp_hist, 'r') as fobj:
                 first_line = fobj.readline()
                 unique_kmers = int(first_line.split('\t')[1])/float(len(record_dict[db].seq))
+                print(unique_kmers)
                 if unique_kmers > kmer_count:
                     kmer_count = unique_kmers
                     best_serotype = db
+                if unique_kmers > max_kmer_count:
+                   max_kmer_count = unique_kmers
         shutil.rmtree(temp_dir)
-        if best_serotype != '':
+        if max_kmer_count < 0.1:
+           self.best_serotype = 'coverage to low'
+        elif best_serotype != '':
             self.best_serotype = best_serotype
         else:
             self.best_serotype = 'NT'
@@ -77,14 +83,20 @@ class Serotyping:
         ref_dir = os.path.join(self.ariba_cluster_db ,self.cluster_serotype_dict[cluster][0]+'/','ref')
         command = ['ariba run ',ref_dir,self.fw_read,self.bw_read,os.path.join(self.prefix,'ref')]
         os.system(' '.join(command))
-        ref_dir = os.path.join(self.ariba_cluster_db ,self.cluster_serotype_dict[cluster][0]+'/','genes')
-        command = ['ariba run ',ref_dir,self.fw_read,self.bw_read,os.path.join(self.prefix,'genes')]
-        os.system(' '.join(command))
+        if (os.path.isdir(os.path.join(self.ariba_cluster_db ,self.cluster_serotype_dict[cluster][0]+'/','genes'))):
+           ref_dir = os.path.join(self.ariba_cluster_db ,self.cluster_serotype_dict[cluster][0]+'/','genes')
+           command = ['ariba run ',ref_dir,self.fw_read,self.bw_read,os.path.join(self.prefix,'genes')]
+           os.system(' '.join(command))
+           shutil.copyfile(os.path.join(self.prefix,'genes','assembled_genes.fa.gz'),os.path.join(self.prefix,'assembled_genes.fa.gz'))
+           os.system('cat '+ os.path.join(self.prefix,'ref','report.tsv')+' '+os.path.join(self.prefix,'genes','report.tsv')+' > ' + os.path.join(self.prefix,'report.tsv'))
+           os.system('gzip -d '+os.path.join(self.prefix,'assembled_genes.fa.gz')) 
+           shutil.copyfile(os.path.join(self.prefix,'genes','assembled_genes.fa.gz'),os.path.join(self.prefix,'assembled_genes.fa.gz'))       
+    
+        else: 
+            shutil.copyfile(os.path.join(self.prefix,'ref','report.tsv'),os.path.join(self.prefix,'report.tsv')) 
         shutil.copyfile(os.path.join(self.prefix,'ref','assemblies.fa.gz'),os.path.join(self.prefix,'assemblies.fa.gz'))
-        shutil.copyfile(os.path.join(self.prefix,'genes','assembled_genes.fa.gz'),os.path.join(self.prefix,'assembled_genes.fa.gz'))
         os.system('gzip -d '+os.path.join(self.prefix,'assemblies.fa.gz'))
-        os.system('gzip -d '+os.path.join(self.prefix,'assembled_genes.fa.gz'))
-        os.system('cat '+ os.path.join(self.prefix,'ref','report.tsv')+' '+os.path.join(self.prefix,'genes','report.tsv')+' > ' + os.path.join(self.prefix,'report.tsv'))
+       
 
 
     @staticmethod
@@ -377,6 +389,7 @@ class Serotyping:
 
     def _prediction(self,assemblie_file,cluster):
         sero = ''
+        print(self.cluster_count[cluster])
         #db_path = os.path.join(self.pneumcat_refs,'_'.join(sorted(self.cluster_serotype_dict[cluster])))
         if self.cluster_count[cluster] == 1:
             self.sero = self.cluster_serotype_dict[cluster][0]
@@ -404,6 +417,10 @@ class Serotyping:
         assemblie_file = self.prefix+'/assemblies.fa'
         self._run_kmc()
         print(self.best_serotype)
+        if self.best_serotype =='coverage to low':
+           os.system('mkdir '+self.prefix)
+           with open(self.prefix+'/pred.tsv', 'a') as fobj:
+               fobj.write(self.prefix+'\t'+self.best_serotype+'\n')			
         if self.best_serotype == 'NT':
             os.system('mkdir '+self.prefix)
             with open(self.prefix+'/pred.tsv', 'a') as fobj:
