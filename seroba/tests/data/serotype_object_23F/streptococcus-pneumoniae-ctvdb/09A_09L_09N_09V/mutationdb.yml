@@ -1,0 +1,10 @@
+{genes: {09A: {wcjD: 1}, 09L: {wcjD: 0}, 09N: {wcjD: 0}, 09V: {wcjD: 1}}, pseudo: {
+    09A: {wcjE: [1, [!!python/tuple [721, 722], '-']]}, 09V: {wcjE: [0, [!!python/tuple [
+            721, 722], G]]}}, snps: {wchA: {504: {09L: [TAT, 168, Y], 09N: [TCT, 168,
+          S]}, 879: {09L: [CCA, 293, P], 09N: [TCA, 293, S]}}, wcjA: {414: {09L: [
+          CAT, 138, H], 09N: [TAT, 138, Y]}, 429: {09L: [GGT, 143, G], 09N: [AGT,
+          143, S]}, 528: {09L: [GAT, 176, D], 09N: [GGT, 176, G]}, 636: {09L: [GAT,
+          212, D], 09N: [AAT, 212, N]}, 852: {09L: [GCA, 284, A], 09N: [TCA, 284,
+          S]}, 957: {09L: [ATT, 319, I], 09N: [ACT, 319, T]}}, wcjB: {789: {09L: [
+          GCC, 263, A], 09N: [ACC, 263, T]}}, wzy: {846: {09L: [GAC, 282, D], 09N: [
+          AAC, 282, N]}}}}

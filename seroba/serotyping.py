@@ -13,6 +13,7 @@ from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
 from Bio.Seq import Seq
 from Bio.Alphabet import generic_dna
+from memory_profiler import profile
 class Error (Exception): pass
 
 class Serotyping:
@@ -71,13 +72,13 @@ class Serotyping:
                 if unique_kmers > max_kmer_count:
                    max_kmer_count = unique_kmers
         shutil.rmtree(temp_dir)
-        if max_kmer_count < 0.1:
+        if max_kmer_count < 0.01:
            self.best_serotype = 'coverage to low'
         elif best_serotype != '':
             self.best_serotype = best_serotype
         else:
             self.best_serotype = 'NT'
-
+    
     def _run_ariba_on_cluster(self,cluster):
         os.makedirs(self.prefix)
         ref_dir = os.path.join(self.ariba_cluster_db ,self.cluster_serotype_dict[cluster][0]+'/','ref')
@@ -230,7 +231,7 @@ class Serotyping:
                     #        serotype_count[serotype]+=-0.5
 
         return serotype_count,relevant_genetic_elements
-
+   
     @staticmethod
     def _find_serotype(assemblie_file,serogroup_fasta, serogroup_dict,serotypes,report_file,prefix):
         sub_dict = {'genes':[],'pseudo':[],'allele':[],'snps':[]}
@@ -410,7 +411,7 @@ class Serotyping:
             os.system('gzip -d '+os.path.join(self.prefix,'assembled_genes.fa.gz'))
             os.sytem('cat '+ os.path.join(self.prefix,'ref','report.tsv')+' '+os.path.join(self.prefix,'genes','report.tsv')+' > ' + os.path.join(self.prefix,'report.tsv'))"""
 
-
+     
     def run(self):
         self.serotype_cluster_dict, self.cluster_serotype_dict,\
         self.cluster_count = Serotyping._serotype_2_cluster(self.cd_cluster)
@@ -421,7 +422,7 @@ class Serotyping:
            os.system('mkdir '+self.prefix)
            with open(self.prefix+'/pred.tsv', 'a') as fobj:
                fobj.write(self.prefix+'\t'+self.best_serotype+'\n')			
-        if self.best_serotype == 'NT':
+        elif self.best_serotype == 'NT':
             os.system('mkdir '+self.prefix)
             with open(self.prefix+'/pred.tsv', 'a') as fobj:
                 fobj.write(self.prefix+'\tNT\n')
