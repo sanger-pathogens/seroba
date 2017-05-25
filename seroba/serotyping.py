@@ -50,7 +50,7 @@ class Serotyping:
     #kmc on fw_read
         temp_dir = tempfile.mkdtemp(prefix = 'temp.kmc', dir=os.getcwd())
         kmer_db_list = os.listdir(self.kmer_db)
-        kmer_count = 0.3
+        kmer_count = 0.2
         max_kmer_count = 0.0
         best_serotype = ''
         kmer_count_files = kmc.run_kmc(self.fw_read,self.kmer_size,temp_dir,self.prefix)
@@ -304,10 +304,11 @@ class Serotyping:
                                 next(tsvin,None)
                                 count = 0
                                 for row in tsvin:
-                                    if gene in row:
-                                        mixed_serotype = Serotyping._detect_mixed_samples(row,allel_snp['pseudo'])
-                                    if gene in row and ("FSHIFT" in row or 'TRUNC' in row):
-                                        count = 1
+                                 
+                                       if gene in row and (float(row[8])/float(row[7]) >0.95):
+                                           mixed_serotype = Serotyping._detect_mixed_samples(row,allel_snp['pseudo'])
+                                       if gene in row and ("FSHIFT" in row or 'TRUNC' in row) and (float(row[8])/float(row[7]) > 0.95):
+                                           count = 1
 
                                 if count == 0:
                                    serotype_count[serotype] +=-2.5
@@ -350,9 +351,15 @@ class Serotyping:
         min_value = min(serotype_count.values())
         min_keys = [k for k in serotype_count if serotype_count[k] == min_value]
         serotype = ''
-
-        print(serotype_count)
+        print(min_keys)
         if mixed_serotype != None:
+            for key in min_keys:
+                print(key)
+                print(mixed_serotype)
+                if key not in mixed_serotype:
+                   mixed_serotype = None
+        print(serotype_count)
+        if  mixed_serotype!= None :
             serotype = mixed_serotype
         elif len(min_keys) > 1:
             with open(report_file) as fobj:
@@ -389,7 +396,7 @@ class Serotyping:
 
     def _prediction(self,assemblie_file,cluster):
         sero = ''
-        print(self.cluster_count[cluster])
+        
         #db_path = os.path.join(self.pneumcat_refs,'_'.join(sorted(self.cluster_serotype_dict[cluster])))
         if self.cluster_count[cluster] == 1:
             self.sero = self.cluster_serotype_dict[cluster][0]
