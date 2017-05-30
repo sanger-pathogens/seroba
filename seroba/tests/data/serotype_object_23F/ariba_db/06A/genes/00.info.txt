@@ -1,0 +1,3 @@
+input fasta file:	/lustre/scratch118/infgen/pathdev/le8/serotype/Ariba_Test/test_SeroBA_11A_37/temp_ariba3rpwvz9y/temp_fasta_genes.fasta
+input tsv file:	/lustre/scratch118/infgen/pathdev/le8/serotype/Ariba_Test/test_SeroBA_11A_37/temp_ariba3rpwvz9y/temp_meta_genes.tsv
+genetic_code	11

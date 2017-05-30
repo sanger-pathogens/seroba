@@ -43,35 +43,47 @@ class RefDbCreator:
             print("no such file")
 
         self.temp_dir = tempfile.mkdtemp(prefix = 'temp_ariba', dir=os.getcwd())
-        self.temp_fasta = os.path.join(self.temp_dir,'temp_fasta.fasta')
-        self.temp_meta = os.path.join(self.temp_dir,'temp_meta.tsv')
+        self.temp_fasta_ref = os.path.join(self.temp_dir,'temp_fasta_ref.fasta')
+        self.temp_meta_ref = os.path.join(self.temp_dir,'temp_meta_ref.tsv')
+        self.temp_fasta_genes = os.path.join(self.temp_dir,'temp_fasta_genes.fasta')
+        self.temp_meta_genes = os.path.join(self.temp_dir,'temp_meta_genes.tsv')
 
         #read fasta
         #grep all lines with serogroup
         with open(self.meta_data_tsv,'r') as fobj:
             tsvin = csv.reader(fobj, delimiter='\t')
-            with open (self.temp_fasta,'a') as fasta:
-                with open(self.temp_meta,'a') as meta:
-                    prev_row = ''
-                    for row in tsvin:
-                        if serogroup in row and row[0] != prev_row:
-                            prev_row = row[0]
-                            if 'ref' in row:
+            prev_row = ''
+            for row in tsvin:
+                if serogroup in row and row[0] != prev_row:
+                    prev_row = row[0]
+                    if 'ref' in row:
+                        with open (self.temp_fasta_ref,'a') as fasta:
+                            with open(self.temp_meta_ref,'a') as meta:
                                 records = SeqRecord(record_dict[row[0]].seq,id = row[0],description='')
                                 meta.write(row[0]+'\t0\t0\t.\t.\t.\n')
-                            else:
-                                records = SeqRecord(record_serogroup_dict[row[0]].seq,id = row[0],description='')
-                                meta.write(row[0]+'\t1\t0\t.\t.\t.\n')
-                            SeqIO.write(records, fasta, "fasta")
-
+                                SeqIO.write(records, fasta, "fasta")
+                    else:
+                                with open (self.temp_fasta_genes,'a') as fasta:
+                                    with open(self.temp_meta_genes,'a') as meta:
+                                        records = SeqRecord(record_serogroup_dict[row[0]].seq,id = row[0],description='')
+                                        meta.write(row[0]+'\t1\t0\t.\t.\t.\n')
+                                        SeqIO.write(records, fasta, "fasta")
+        self.temp_meta = os.path.join(self.temp_dir,'temp_meta.tsv')
+        if os.path.isfile(self.temp_meta_genes):
+            os.system('cat '+self.temp_meta_ref+ ' '+ self.temp_meta_genes+ ' > '+self.temp_meta)
+        else:
+            shutil.copyfile(self.temp_meta_ref,self.temp_meta)
         #copy all seqs to temp fasta
         #format lines to ariba valid format
     @staticmethod
     def _create_cdhit_cluster_file(temp_dir,meta_tsv):
         with open(meta_tsv,'r') as fobj:
             tsvin = csv.reader(fobj, delimiter='\t')
-            temp_cdhit_cluster = os.path.join(temp_dir,'cdhit_cluster')
-            with open(temp_cdhit_cluster,'w') as wobj:
+            temp_cdhit_cluster_ref = os.path.join(temp_dir,'cdhit_cluster_ref')
+            temp_cdhit_cluster_genes = os.path.join(temp_dir,'cdhit_cluster_genes')
+            with open(temp_cdhit_cluster_ref,'w') as wobj:
+
+
                 ref_seqs = []
                 prefs = {}
                 genes = []
@@ -86,9 +98,10 @@ class RefDbCreator:
                         else:
                             genes[prefs[pre]].append(row[0])
                 wobj.write('\t'.join(ref_seqs)+'\n')
-                for gene in genes:
-                    wobj.write('\t'.join(gene)+'\n')
-        return temp_cdhit_cluster
+                with open (temp_cdhit_cluster_genes,'w') as wobj2:
+                    for gene in genes:
+                        wobj2.write('\t'.join(gene)+'\n')
+        return temp_cdhit_cluster_ref, temp_cdhit_cluster_genes
 
     @staticmethod
     def _check_meta_data(meta_tsv,gene_fasta):
@@ -116,9 +129,10 @@ class RefDbCreator:
 
 
     @staticmethod
-    def _create_ariba_db(fasta_file,cluster_meta_data,cdhit_clusters,serogroup,out_dir):
-        ariba_dir = os.path.join(out_dir,'ariba_db',serogroup)
+    def _create_ariba_db(fasta_file,cluster_meta_data,cdhit_clusters,serogroup,out_dir,subdir):
+        ariba_dir = os.path.join(out_dir,'ariba_db',serogroup,subdir)
         command = ['ariba prepareref','-f',fasta_file,'-m',cluster_meta_data,'--cdhit_clusters',cdhit_clusters, ariba_dir]
+        print(' '.join(command))
         os.system(' '.join(command))
 
     @staticmethod
@@ -196,7 +210,13 @@ class RefDbCreator:
                     elif row[4] == 'pseudo':
                         meta_data_dict[row[1]]['pseudo'].update({row[2]:{row[0]:row[5]}})
                     elif row[4] == 'genes':
-                        meta_data_dict[row[1]]['genes'].update({row[2]:{row[0]:row[5]}})
+                        print(row)
+                        if row[2] in meta_data_dict[row[1]]['genes']:
+                            print(meta_data_dict[row[1]]['genes'][row[2]])
+                            meta_data_dict[row[1]]['genes'][row[2]][row[0]]=row[5]
+
+                        else:
+                            meta_data_dict[row[1]]['genes'][row[2]]={row[0]:row[5]}
                 elif row[4] == 'ref' and row[1] not in meta_data_dict:
                     meta_data_dict[row[1]] =  {'allele':{},'snps':{},'genes':{},'pseudo':{}}
 
@@ -214,19 +234,24 @@ class RefDbCreator:
 
     def run(self):
         self.meta_dict = self._read_meta_data_tsv(self.meta_data_tsv)
+
+        pprint.pprint(self.meta_dict['11A'])
         os.makedirs(os.path.join(self.out_dir,'ariba_db'))
         cdhit_cluster = RefDbCreator._create_complete_cdhit_cluster(self.meta_data_tsv,self.out_dir)
         self._create_complete_ariba_db(cdhit_cluster)
         for serogroup in self.meta_dict:
 
             self._split_meta_data2serogroup(serogroup)
-            self.cdhit_clusters= self._create_cdhit_cluster_file(self.temp_dir,self.temp_meta)
-            gene_fasta = serogroup_fasta = os.path.join(os.path.dirname(self.out_dir),'streptococcus-pneumoniae-ctvdb',serogroup+'.fasta')
+            self.cdhit_clusters_ref, self.cdhit_clusters_genes = self._create_cdhit_cluster_file(self.temp_dir,self.temp_meta)
+
+            gene_fasta =  os.path.join(os.path.dirname(self.out_dir),'streptococcus-pneumoniae-ctvdb',serogroup+'.fasta')
             RefDbCreator._check_meta_data(self.temp_meta,gene_fasta)
-            RefDbCreator._create_ariba_db(self.temp_fasta,self.temp_meta,self.cdhit_clusters,serogroup,self.out_dir)
+            os.makedirs(os.path.join(self.out_dir,'ariba_db',serogroup))
+            RefDbCreator._create_ariba_db(self.temp_fasta_ref,self.temp_meta_ref,self.cdhit_clusters_ref,serogroup,self.out_dir,'ref')
+            if os.path.isfile(self.temp_meta_genes):
+                RefDbCreator._create_ariba_db(self.temp_fasta_genes,self.temp_meta_genes,self.cdhit_clusters_genes,serogroup,self.out_dir,'genes')
             shutil.rmtree(self.temp_dir)
         self._create_kmc_db()
         kmer_info = os.path.join(self.out_dir,'kmer_size.txt')
         with open(kmer_info,'w') as fobj:
             fobj.write(self.kmer_size)
-        pprint.pprint(self.meta_dict)

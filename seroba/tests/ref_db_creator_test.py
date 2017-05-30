@@ -85,10 +85,14 @@ class TestRefDbCreator(unittest.TestCase):
         r = ref_db_creator.RefDbCreator(ref_dir,kmer_size)
         expected_temp_fasta = os.path.join(ref_dir,'expected_ref_fasta.fa')
         expected_temp_meta = os.path.join(ref_dir,'expected_meta_data.tsv')
+        expected_temp_fasta_genes = os.path.join(ref_dir,'expected_genes_fasta.fa')
+        expected_temp_meta_genes = os.path.join(ref_dir,'expected_genes_meta_data.tsv')
         serogroup = '06A'
         r._split_meta_data2serogroup(serogroup)
-        self.assertTrue(filecmp.cmp(r.temp_fasta,expected_temp_fasta), 'files are not equal')
-        self.assertTrue(filecmp.cmp(r.temp_meta,expected_temp_meta), 'files are not equal')
+        self.assertTrue(filecmp.cmp(r.temp_fasta_ref,expected_temp_fasta), 'files are not equal')
+        self.assertTrue(filecmp.cmp(r.temp_meta_ref,expected_temp_meta), 'files are not equal')
+        self.assertTrue(filecmp.cmp(r.temp_fasta_genes,expected_temp_fasta_genes), 'files are not equal')
+        self.assertTrue(filecmp.cmp(r.temp_meta_genes,expected_temp_meta_genes), 'files are not equal')
         shutil.rmtree(r.temp_dir)
 
     def test__create_cdhit_cluster_file(self):
@@ -111,15 +115,15 @@ class TestRefDbCreator(unittest.TestCase):
         cluster_meta_data = os.path.join(data_dir,'test__create_ariba_db','expected_meta_data.tsv')
         cdhit_clusters = os.path.join(data_dir,'test__create_ariba_db','cdhit_cluster.tsv')
         out_dir = 'temp'
-        os.makedirs('temp/ariba_db')
+        os.makedirs('temp/ariba_db/06A')
         serogroup = '06A'
-        ref_db_creator.RefDbCreator._create_ariba_db(fasta_file,cluster_meta_data,cdhit_clusters,serogroup,out_dir)
-        db_files = os.listdir('temp/ariba_db/06A')
-        print(os.listdir(os.path.join(data_dir,'ariba_db')))
+        ref_db_creator.RefDbCreator._create_ariba_db(fasta_file,cluster_meta_data,cdhit_clusters,serogroup,out_dir,'ref')
+        db_files = os.listdir('temp/ariba_db/06A/ref')
+
         for i in range(len(db_files)):
             with self.subTest (i= i):
                 exp = os.path.join(data_dir,'ariba_db',db_files[i])
-                print(exp)
+
                 self.assertTrue(os.path.isfile(exp) , 'files does not exists')
         shutil.rmtree(out_dir)
 

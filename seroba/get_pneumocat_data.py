@@ -47,10 +47,11 @@ class GetPneumocatData:
                     allele_snp=yaml.load( open( os.path.join(serogroup_dir,subdir,'mutationdb.yml'), "rb" ) )
                     if 'genes' in allele_snp:
                         for serotype in allele_snp['genes']:
-                            gene = list(allele_snp['genes'][serotype].keys())[0]
-                            gene_inf = allele_snp['genes'][serotype][gene]
-                            info = [gene,serogroup,serotype,'0','genes',str(gene_inf)]
-                            info_list.append(info)
+                            gene = list(allele_snp['genes'][serotype].keys())
+                            for i in range(len(gene)):
+                                gene_inf = allele_snp['genes'][serotype][gene[i]]
+                                info = [gene[i],serogroup,serotype,'0','genes',str(gene_inf)]
+                                info_list.append(info)
                     if 'pseudo' in allele_snp:
                         for serotype in allele_snp['pseudo']:
 

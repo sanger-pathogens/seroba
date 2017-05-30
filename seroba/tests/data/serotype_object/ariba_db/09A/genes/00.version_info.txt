@@ -1,0 +1,28 @@
+ARIBA run with this command:
+/home/ubuntu/.local/bin/ariba prepareref prepareref -f /vagrant/serotyping/test_11A/temp_aribal1kzt_rr/temp_fasta_genes.fasta -m /vagrant/serotyping/test_11A/temp_aribal1kzt_rr/temp_meta_genes.tsv --cdhit_clusters /vagrant/serotyping/test_11A/temp_aribal1kzt_rr/cdhit_cluster_genes database/ariba_db/09A/genes
+from this directory: /vagrant/serotyping/test_11A
+
+ARIBA version: 2.9.3
+
+External dependencies:
+bowtie2	2.2.6	/usr/bin/bowtie2
+cdhit	4.6	/usr/bin/cd-hit-est
+nucmer	3.1	/usr/bin/nucmer
+
+External dependencies OK: True
+
+Python version:
+3.5.2 (default, Nov 17 2016, 17:05:23) 
+[GCC 5.4.0 20160609]
+
+Python packages:
+ariba	2.9.3	/home/ubuntu/.local/lib/python3.5/site-packages/ariba/__init__.py
+bs4	4.6.0	/home/ubuntu/.local/lib/python3.5/site-packages/bs4/__init__.py
+dendropy	4.2.0	/home/ubuntu/.local/lib/python3.5/site-packages/dendropy/__init__.py
+pyfastaq	3.15.0	/home/ubuntu/.local/lib/python3.5/site-packages/pyfastaq/__init__.py
+pymummer	0.10.2	/home/ubuntu/.local/lib/python3.5/site-packages/pymummer/__init__.py
+pysam	0.11.1	/home/ubuntu/.local/lib/python3.5/site-packages/pysam/__init__.py
+
+Python packages OK: True
+
+Everything looks OK: True
