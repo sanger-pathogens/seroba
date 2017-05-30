@@ -1,6 +1,0 @@
-#ariba_ref_name	ref_name	gene	var_only	flag	reads	cluster	ref_len	ref_base_assembled	pc_ident	ctg	ctg_len	ctg_cov	known_var	var_type	var_seq_type	known_var_change	has_known_var	ref_ctg_change	ref_ctg_effect	ref_start	ref_end	ref_nt	ctg_start	ctg_end	ctg_nt	smtls_total_depth	smtls_nts	smtls_nts_depth	var_description	free_text
-wchA_2	wchA_2	1	0	539	314	cluster	1368	1368	99.71	cluster.l15.c30.ctg.1	2348	16.7	0	.	p	.	0	C42Y	NONSYN	124	126	TGT	613	615	TAT	18;18;18	T;A;T	18;18;18	.	.
-wchA_2	wchA_2	1	0	539	314	cluster	1368	1368	99.71	cluster.l15.c30.ctg.1	2348	16.7	0	.	p	.	0	G183E	NONSYN	547	549	GGG	1036	1038	GAG	26;26;26	G;A;G	26;26;26	.	.
-wchA_2	wchA_2	1	0	539	314	cluster	1368	1368	99.71	cluster.l15.c30.ctg.1	2348	16.7	0	.	p	.	0	.	SYN	568	570	CAC	1057	1059	CAT	24;24;24	C;A;T	24;24;24	.	.
-wchA_2	wchA_2	1	0	539	314	cluster	1368	1368	99.71	cluster.l15.c30.ctg.1	2348	16.7	0	.	p	.	0	S202G	NONSYN	604	606	AGT	1093	1095	GGT	21;21;21	G;G;T	21;21;21	.	.
-wzy_2	wzy_2	1	0	27	336	cluster_1	1194	1194	99.92	cluster_1.l15.c17.ctg.1	2156	19.5	0	.	p	.	0	.	SYN	577	579	TTA	1065	1067	TTG	39;39;40	T;T;G	39;39;40	.	.
