@@ -2,15 +2,4 @@ Predicted Serotype:	33F
 Serotype predicted by ariba	:#ariba_ref_name
 assemblie from ariba as an identy of: 	reads	 with this serotype
 Serotype 	 Genetic Variant
-33A	genes
-33A	pseudo
-33A	allele
-33A	snps
-33F	genes
-33F	pseudo
-33F	allele
-33F	snps
-37	genes
-37	pseudo
-37	allele
-37	snps
+33A	pseudo	wcjE

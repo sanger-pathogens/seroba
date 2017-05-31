@@ -1,4 +1,0 @@
-/nfs/users/nfs_l/le8/.local/lib/python3.6/site-packages/seroba-0.0.1-py3.6.egg
-/nfs/users/nfs_l/le8/.local/bin/seroba
-/nfs/users/nfs_l/le8/.local/bin/easy_install
-/nfs/users/nfs_l/le8/.local/bin/easy_install-3.6
