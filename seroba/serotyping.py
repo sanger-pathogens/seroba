@@ -51,7 +51,8 @@ class Serotyping:
     #kmc on fw_read
         temp_dir = tempfile.mkdtemp(prefix = 'temp.kmc', dir=os.getcwd())
         kmer_db_list = os.listdir(self.kmer_db)
-        kmer_count = 0.3
+        kmer_count = 0.2
+        max_kmer_count = 0.0
         best_serotype = ''
         kmer_count_files = kmc.run_kmc(self.fw_read,self.kmer_size,temp_dir,self.prefix)
         record_dict = SeqIO.to_dict(SeqIO.parse(self.reference_fasta, "fasta"))
@@ -64,28 +65,39 @@ class Serotyping:
             with open( temp_hist, 'r') as fobj:
                 first_line = fobj.readline()
                 unique_kmers = int(first_line.split('\t')[1])/float(len(record_dict[db].seq))
+                print(unique_kmers)
                 if unique_kmers > kmer_count:
                     kmer_count = unique_kmers
                     best_serotype = db
+                if unique_kmers > max_kmer_count:
+                   max_kmer_count = unique_kmers
         shutil.rmtree(temp_dir)
-        if best_serotype != '':
+        if max_kmer_count < 0.01:
+           self.best_serotype = 'coverage to low'
+        elif best_serotype != '':
             self.best_serotype = best_serotype
         else:
             self.best_serotype = 'NT'
-
+    
     def _run_ariba_on_cluster(self,cluster):
         os.makedirs(self.prefix)
         ref_dir = os.path.join(self.ariba_cluster_db ,self.cluster_serotype_dict[cluster][0]+'/','ref')
         command = ['ariba run ',ref_dir,self.fw_read,self.bw_read,os.path.join(self.prefix,'ref')]
         os.system(' '.join(command))
-        ref_dir = os.path.join(self.ariba_cluster_db ,self.cluster_serotype_dict[cluster][0]+'/','genes')
-        command = ['ariba run ',ref_dir,self.fw_read,self.bw_read,os.path.join(self.prefix,'genes')]
-        os.system(' '.join(command))
+        if (os.path.isdir(os.path.join(self.ariba_cluster_db ,self.cluster_serotype_dict[cluster][0]+'/','genes'))):
+           ref_dir = os.path.join(self.ariba_cluster_db ,self.cluster_serotype_dict[cluster][0]+'/','genes')
+           command = ['ariba run ',ref_dir,self.fw_read,self.bw_read,os.path.join(self.prefix,'genes')]
+           os.system(' '.join(command))
+           shutil.copyfile(os.path.join(self.prefix,'genes','assembled_genes.fa.gz'),os.path.join(self.prefix,'assembled_genes.fa.gz'))
+           os.system('cat '+ os.path.join(self.prefix,'ref','report.tsv')+' '+os.path.join(self.prefix,'genes','report.tsv')+' > ' + os.path.join(self.prefix,'report.tsv'))
+           os.system('gzip -d '+os.path.join(self.prefix,'assembled_genes.fa.gz')) 
+           shutil.copyfile(os.path.join(self.prefix,'genes','assembled_genes.fa.gz'),os.path.join(self.prefix,'assembled_genes.fa.gz'))       
+    
+        else: 
+            shutil.copyfile(os.path.join(self.prefix,'ref','report.tsv'),os.path.join(self.prefix,'report.tsv')) 
         shutil.copyfile(os.path.join(self.prefix,'ref','assemblies.fa.gz'),os.path.join(self.prefix,'assemblies.fa.gz'))
-        shutil.copyfile(os.path.join(self.prefix,'genes','assembled_genes.fa.gz'),os.path.join(self.prefix,'assembled_genes.fa.gz'))
         os.system('gzip -d '+os.path.join(self.prefix,'assemblies.fa.gz'))
-        os.system('gzip -d '+os.path.join(self.prefix,'assembled_genes.fa.gz'))
-        os.system('cat '+ os.path.join(self.prefix,'ref','report.tsv')+' '+os.path.join(self.prefix,'genes','report.tsv')+' > ' + os.path.join(self.prefix,'report.tsv'))
+       
 
 
     @staticmethod
@@ -221,7 +233,7 @@ class Serotyping:
                     #        serotype_count[serotype]+=-0.5
 
         return serotype_count,relevant_genetic_elements
-
+   
     @staticmethod
     def _find_serotype(assemblie_file,serogroup_fasta, serogroup_dict,serotypes,report_file,prefix):
         sub_dict = {'genes':[],'pseudo':[],'allele':[],'snps':[]}
@@ -305,10 +317,11 @@ class Serotyping:
                                 next(tsvin,None)
                                 count = 0
                                 for row in tsvin:
-                                    if gene in row:
-                                        mixed_serotype = Serotyping._detect_mixed_samples(row,allel_snp['pseudo'])
-                                    if gene in row and ("FSHIFT" in row or 'TRUNC' in row):
-                                        count = 1
+                                 
+                                       if gene in row and (float(row[8])/float(row[7]) >0.95):
+                                           mixed_serotype = Serotyping._detect_mixed_samples(row,allel_snp['pseudo'])
+                                       if gene in row and ("FSHIFT" in row or 'TRUNC' in row) and (float(row[8])/float(row[7]) > 0.95):
+                                           count = 1
 
                                 if count == 0:
                                    serotype_count[serotype] +=-2.5
@@ -359,9 +372,15 @@ class Serotyping:
         min_value = min(serotype_count.values())
         min_keys = [k for k in serotype_count if serotype_count[k] == min_value]
         serotype = ''
-
-        print(serotype_count)
+        print(min_keys)
         if mixed_serotype != None:
+            for key in min_keys:
+                print(key)
+                print(mixed_serotype)
+                if key not in mixed_serotype:
+                   mixed_serotype = None
+        print(serotype_count)
+        if  mixed_serotype!= None :
             serotype = mixed_serotype
         elif len(min_keys) > 1:
             with open(report_file) as fobj:
@@ -400,6 +419,7 @@ class Serotyping:
 
     def _prediction(self,assemblie_file,cluster):
         sero = ''
+        
         #db_path = os.path.join(self.pneumcat_refs,'_'.join(sorted(self.cluster_serotype_dict[cluster])))
         if self.cluster_count[cluster] == 1:
             self.sero = self.cluster_serotype_dict[cluster][0]
@@ -416,14 +436,18 @@ class Serotyping:
             self._print_detailed_output(report_file,self.imp,self.sero)
 
 
-
+     
     def run(self):
         self.serotype_cluster_dict, self.cluster_serotype_dict,\
         self.cluster_count = Serotyping._serotype_2_cluster(self.cd_cluster)
         assemblie_file = self.prefix+'/assemblies.fa'
         self._run_kmc()
         print(self.best_serotype)
-        if self.best_serotype == 'NT':
+        if self.best_serotype =='coverage to low':
+           os.system('mkdir '+self.prefix)
+           with open(self.prefix+'/pred.tsv', 'a') as fobj:
+               fobj.write(self.prefix+'\t'+self.best_serotype+'\n')			
+        elif self.best_serotype == 'NT':
             os.system('mkdir '+self.prefix)
             with open(self.prefix+'/pred.tsv', 'a') as fobj:
                 fobj.write(self.prefix+'\tNT\n')

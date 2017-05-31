@@ -379,3 +379,13 @@ class TestSerotyping(unittest.TestCase):
         s = serotyping.Serotyping(refs_dir, fw_read, bw_read, prefix)
         s.run()
         self.assertEqual(expected,s.sero)
+
+    """def full_run_23F(self):
+       expected = '23F'
+       refs_dir = os.path.join(data_dir,'serotype_object_23F')
+       fw_read = os.path.join(data_dir,'23F','23F_cover_22_1.fastq.gz')
+       bw_read = os.path.join(data_dir,'23F','23F_cover_22_2.fastq.gz')
+       prefix = os.path.join('23F')
+       s = serotyping.Serotyping(refs_dir, fw_read, bw_read, prefix)
+       s.run()
+       self.assertEqual(expected,s.sero)"""	
