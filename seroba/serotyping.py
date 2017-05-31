@@ -13,6 +13,7 @@ from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
 from Bio.Seq import Seq
 from Bio.Alphabet import generic_dna
+import copy
 class Error (Exception): pass
 
 class Serotyping:
@@ -201,7 +202,7 @@ class Serotyping:
                 for serotype in serotype_count:
                     if serotype in yaml_dict[gene][pos]:
                         bases=Serotyping._get_snp(yaml_dict[gene][pos],serotype)
-                        base = ''
+
                         if int(pos)%3 == 0:
                             i = int(pos)
                             j = int(pos)+3
@@ -211,7 +212,9 @@ class Serotyping:
                         if gene in record_dict2:
                             #for i in range(len(bases)):
                             if yaml_dict[gene][pos][serotype] == record_dict2[gene].seq[i:j]:
-                                relevant_genetic_elements[serotype]['snps'].append([gene,pos, base])
+                                sub_dict = copy.deepcopy(relevant_genetic_elements[serotype])
+                                sub_dict['snps'].append([gene,pos, yaml_dict[gene][pos][serotype]])
+                                relevant_genetic_elements[serotype] = sub_dict
                                 serotype_count[serotype]+=-1
 
                     #    else:
@@ -267,13 +270,19 @@ class Serotyping:
                         if allel_snp['genes'][serotype][gene] != gene_present_dict[gene]:
                             serotype_count[serotype]+=3
                         if  gene_present_dict[gene] == '1':
-                            relevant_genetic_elements[serotype]['genes'].append(gene)
+                            sub_dict = copy.deepcopy(relevant_genetic_elements[serotype])
+                            sub_dict['genes'].append(gene)
+                            relevant_genetic_elements[serotype]=sub_dict
 
 
         print(serotype_count)
         if "pseudo" in allel_snp:
 
             for serotype in serotypes:
+                sub_dict = copy.deepcopy(relevant_genetic_elements[serotype])
+                print(serotype)
+                print(sub_dict)
+
                 if serotype in allel_snp['pseudo']:
                    for gene in allel_snp['pseudo'][serotype]:
                         if allel_snp['pseudo'][serotype][gene]=='1':
@@ -284,7 +293,11 @@ class Serotyping:
                                         mixed_serotype = Serotyping._detect_mixed_samples(row,allel_snp['pseudo'])
                                     if gene in row and ("FSHIFT" in row or 'TRUNC' in row):
                                         serotype_count[serotype]+=-2.5
-                                        relevant_genetic_elements[serotype]['pseudo'].append(gene)
+                                        print(serotype)
+
+                                        sub_dict['pseudo'].append(gene)
+
+
 
                         elif allel_snp['pseudo'][serotype][gene] == '0':
                             with open(report_file) as fobj:
@@ -299,10 +312,16 @@ class Serotyping:
 
                                 if count == 0:
                                    serotype_count[serotype] +=-2.5
-                                   relevant_genetic_elements[serotype]['pseudo'].append(gene)
+                                   print(gene)
+                                   sub_dict['pseudo'].append(gene)
+                                   print(sub_dict)
+
+                        relevant_genetic_elements[serotype] = sub_dict
+
                 else:
                     serotype_count[serotype]+=-1
         print(serotype_count)
+
         if "allele" in allel_snp:
             for al in allel_snp['allele']:
                 h = [[x.ref_name, x.ref_start, x.ref_end, x.ref_length,x.qry_length,x.ref_length,x.percent_identity] for x in pymummer.coords_file.reader(os.path.join(tmpdir,'coords.txt'))]
@@ -322,7 +341,9 @@ class Serotyping:
                            s[0]= serotype
                         elif best_al == allel_snp['allele'][al][serotype].replace('-','_') and float(h[i][6]) == score and serotype not in s:
                               s.append(serotype)
-                              relevant_genetic_elements[serotype]['allele'].append(gene)
+                              sub_dict = copy.deepcopy( relevant_genetic_elements[serotype])
+                              sub_dict['allele'].append(al)
+                              relevant_genetic_elements[serotype]=sub_dict
 
                 for se in s :
                    if se in serotype_count:
@@ -333,7 +354,7 @@ class Serotyping:
             serotype_count,relevant_genetic_elements = Serotyping._check_snps(allel_snp['snps'],variant_dict,serotype_count,relevant_genetic_elements,prefix,
             report_file)
 
-
+        print(relevant_genetic_elements)
         shutil.rmtree(tmpdir)
         min_value = min(serotype_count.values())
         min_keys = [k for k in serotype_count if serotype_count[k] == min_value]
@@ -364,6 +385,7 @@ class Serotyping:
 
 
     def _print_detailed_output(self,report_file,relevant_genetic_elements,serotype):
+        print(relevant_genetic_elements)
         with open(report_file,'r') as fobj:
             first = fobj.readline().split('\t')
             with open(os.path.join(self.prefix,'detailed_serogroup_info.txt'),'w') as wobj:
@@ -373,7 +395,8 @@ class Serotyping:
                 wobj.write('Serotype \t Genetic Variant\n')
                 for serotype in relevant_genetic_elements:
                     for genetic_var in relevant_genetic_elements[serotype]:
-                        wobj.write(serotype+'\t'+genetic_var+'\n')
+                        for entry in relevant_genetic_elements[serotype][genetic_var]:
+                            wobj.write(serotype+'\t'+genetic_var+'\t'+str(entry)+'\n')
 
     def _prediction(self,assemblie_file,cluster):
         sero = ''
@@ -391,11 +414,7 @@ class Serotyping:
             self.sero, self.imp = Serotyping._find_serotype(assemblie_file,serogroup_fasta,self.meta_data_dict[serogroup],\
                 self.cluster_serotype_dict[cluster],report_file,self.prefix)
             self._print_detailed_output(report_file,self.imp,self.sero)
-            """shutil.copyfile(os.path.join(self.prefix,'ref','assemblies.fa.gz'),os.path.join(self.prefix,'assemblies.fa.gz'))
-            shutil.copyfile(os.path.join(self.prefix,'genes','assembled_genes.fa.gz'),os.path.join(self.prefix,'assembled_genes.fa.gz'))
-            os.system('gzip -d '+os.path.join(self.prefix,'/assemblies.fa.gz'))
-            os.system('gzip -d '+os.path.join(self.prefix,'assembled_genes.fa.gz'))
-            os.sytem('cat '+ os.path.join(self.prefix,'ref','report.tsv')+' '+os.path.join(self.prefix,'genes','report.tsv')+' > ' + os.path.join(self.prefix,'report.tsv'))"""
+
 
 
     def run(self):

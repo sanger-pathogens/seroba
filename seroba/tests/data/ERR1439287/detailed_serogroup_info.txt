@@ -2,15 +2,18 @@ Predicted Serotype:	07C
 Serotype predicted by ariba	:#ariba_ref_name
 assemblie from ariba as an identy of: 	reads	 with this serotype
 Serotype 	 Genetic Variant
-07C	allele
-07C	snps
-07C	genes
-07C	pseudo
-07B	allele
-07B	snps
-07B	genes
-07B	pseudo
-40	allele
-40	snps
-40	genes
-40	pseudo
+40	snps	['wcwK', '937', 'GAA']
+07B	snps	['wcwK', '145', 'CTT']
+07B	snps	['wcwK', '880', 'CTT']
+07B	snps	['wcwK', '946', 'GGT']
+07B	snps	['wcwK', '706', 'CAT']
+07B	snps	['wcwK', '928', 'AAT']
+07C	snps	['wcwK', '145', 'CTT']
+07C	snps	['wcwK', '880', 'CTT']
+07C	snps	['wcwK', '946', 'GGT']
+07C	snps	['wcwK', '937', 'GAA']
+07C	snps	['wcwK', '706', 'CAT']
+07C	snps	['wcwK', '928', 'AAT']
+07C	snps	['wcwK', '46', 'GGT']
+07C	snps	['wcwK', '385', 'TGT']
+07C	snps	['wcwK', '487', 'GCT']

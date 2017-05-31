@@ -2,19 +2,6 @@ Predicted Serotype:	15B/15C
 Serotype predicted by ariba	:#ariba_ref_name
 assemblie from ariba as an identy of: 	reads	 with this serotype
 Serotype 	 Genetic Variant
-15C	allele
-15C	snps
-15C	genes
-15C	pseudo
-15F	allele
-15F	snps
-15F	genes
-15F	pseudo
-15A	allele
-15A	snps
-15A	genes
-15A	pseudo
-15B	allele
-15B	snps
-15B	genes
-15B	pseudo
+15B	pseudo	wciZ
+15C	allele	wzd
+15C	allele	wchL
