@@ -1,0 +1,4 @@
+#ariba_ref_name	ref_name	gene	var_only	flag	reads	cluster	ref_len	ref_base_assembled	pc_ident	ctg	ctg_len	ctg_cov	known_var	var_type	var_seq_type	known_var_change	has_known_var	ref_ctg_change	ref_ctg_effect	ref_start	ref_end	ref_nt	ctg_start	ctg_end	ctg_nt	smtls_total_depth	smtls_nts	smtls_nts_depth	var_description	free_text
+gct	gct	1	0	539	182	cluster	393	393	97.71	cluster.l15.c4.ctg.1	815	21.9	0	.	p	.	0	S71P	NONSYN	211	213	TCT	461	463	CCT	45;45;45	C;C;T	43;43;43	.	.
+gct	gct	1	0	539	182	cluster	393	393	97.71	cluster.l15.c4.ctg.1	815	21.9	0	.	p	.	0	I111V	NONSYN	331	333	ATT	581	583	GTT	16;16;16	G;T;T	14;14;14	.	.
+wcrL_11A	wcrL_11A	1	0	27	1116	cluster_1	723	723	100.0	cluster_1.l15.c17.ctg.1	1227	88.3	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.

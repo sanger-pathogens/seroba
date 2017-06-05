@@ -1,0 +1,7 @@
+Predicted Serotype:	15B/15C
+Serotype predicted by ariba	:#ariba_ref_name
+assemblie from ariba as an identy of: 	reads	 with this serotype
+Serotype 	 Genetic Variant
+15B	pseudo	wciZ
+15C	allele	wchL
+15C	allele	wzd

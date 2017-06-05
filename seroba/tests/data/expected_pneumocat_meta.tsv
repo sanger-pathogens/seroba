@@ -1,0 +1,49 @@
+01	01	01	1	ref
+06A	06A	06A	1	ref
+06B	06A	06B	1	ref
+06C	06A	06C	1	ref
+06D	06A	06D	1	ref
+06E	06A	06E	1	ref
+07A	07A	07A	1	ref
+07B	07B	07B	1	ref
+07C	07B	07C	1	ref
+07F	07A	07F	1	ref
+40	07B	40	1	ref
+wciN-1	06A	06A	0	allele
+wciN-1	06A	06B	0	allele
+wciN-2	06A	06C	0	allele
+wciN-2	06A	06D	0	allele
+wciN-3	06A	06E	0	allele
+wciP_06A	06A	06A	0	snps	583	AGT
+wciP_06B	06A	06B	0	snps	583	AAT
+wciP_06C	06A	06C	0	snps	583	AGT
+wciP_06D	06A	06D	0	snps	583	AAT
+wcwD	07A	07A	1	pseudo	1
+wcwD	07A	07F	1	pseudo	0
+wcwK_07B	07B	07B	0	snps	145	CTT
+wcwK_07B	07B	07B	0	snps	385	TTT
+wcwK_07B	07B	07B	0	snps	46	GAT
+wcwK_07B	07B	07B	0	snps	487	ACT
+wcwK_07B	07B	07B	0	snps	706	CAT
+wcwK_07B	07B	07B	0	snps	880	CTT
+wcwK_07B	07B	07B	0	snps	928	AAT
+wcwK_07B	07B	07B	0	snps	937	GCA
+wcwK_07B	07B	07B	0	snps	946	GGT
+wcwK_07C	07B	07C	0	snps	145	CTT
+wcwK_07C	07B	07C	0	snps	385	TGT
+wcwK_07C	07B	07C	0	snps	46	GGT
+wcwK_07C	07B	07C	0	snps	487	GCT
+wcwK_07C	07B	07C	0	snps	706	CAT
+wcwK_07C	07B	07C	0	snps	880	CTT
+wcwK_07C	07B	07C	0	snps	928	AAT
+wcwK_07C	07B	07C	0	snps	937	GAA
+wcwK_07C	07B	07C	0	snps	946	GGT
+wcwK_40	07B	40	0	snps	145	TTT
+wcwK_40	07B	40	0	snps	385	ACT
+wcwK_40	07B	40	0	snps	46	AAT
+wcwK_40	07B	40	0	snps	487	ACT
+wcwK_40	07B	40	0	snps	706	TAT
+wcwK_40	07B	40	0	snps	880	TTT
+wcwK_40	07B	40	0	snps	928	AGT
+wcwK_40	07B	40	0	snps	937	GAA
+wcwK_40	07B	40	0	snps	946	GAT
