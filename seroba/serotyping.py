@@ -78,7 +78,7 @@ class Serotyping:
             self.best_serotype = best_serotype
         else:
             self.best_serotype = 'NT'
-    
+
     def _run_ariba_on_cluster(self,cluster):
         os.makedirs(self.prefix)
         ref_dir = os.path.join(self.ariba_cluster_db ,self.cluster_serotype_dict[cluster][0]+'/','ref')
@@ -90,14 +90,14 @@ class Serotyping:
            os.system(' '.join(command))
            shutil.copyfile(os.path.join(self.prefix,'genes','assembled_genes.fa.gz'),os.path.join(self.prefix,'assembled_genes.fa.gz'))
            os.system('cat '+ os.path.join(self.prefix,'ref','report.tsv')+' '+os.path.join(self.prefix,'genes','report.tsv')+' > ' + os.path.join(self.prefix,'report.tsv'))
-           os.system('gzip -d '+os.path.join(self.prefix,'assembled_genes.fa.gz')) 
-           shutil.copyfile(os.path.join(self.prefix,'genes','assembled_genes.fa.gz'),os.path.join(self.prefix,'assembled_genes.fa.gz'))       
-    
-        else: 
-            shutil.copyfile(os.path.join(self.prefix,'ref','report.tsv'),os.path.join(self.prefix,'report.tsv')) 
+           os.system('gzip -d '+os.path.join(self.prefix,'assembled_genes.fa.gz'))
+           shutil.copyfile(os.path.join(self.prefix,'genes','assembled_genes.fa.gz'),os.path.join(self.prefix,'assembled_genes.fa.gz'))
+
+        else:
+            shutil.copyfile(os.path.join(self.prefix,'ref','report.tsv'),os.path.join(self.prefix,'report.tsv'))
         shutil.copyfile(os.path.join(self.prefix,'ref','assemblies.fa.gz'),os.path.join(self.prefix,'assemblies.fa.gz'))
         os.system('gzip -d '+os.path.join(self.prefix,'assemblies.fa.gz'))
-       
+
 
 
     @staticmethod
@@ -233,7 +233,7 @@ class Serotyping:
                     #        serotype_count[serotype]+=-0.5
 
         return serotype_count,relevant_genetic_elements
-   
+
     @staticmethod
     def _find_serotype(assemblie_file,serogroup_fasta, serogroup_dict,serotypes,report_file,prefix):
         sub_dict = {'genes':[],'pseudo':[],'allele':[],'snps':[]}
@@ -317,7 +317,7 @@ class Serotyping:
                                 next(tsvin,None)
                                 count = 0
                                 for row in tsvin:
-                                 
+
                                        if gene in row and (float(row[8])/float(row[7]) >0.95):
                                            mixed_serotype = Serotyping._detect_mixed_samples(row,allel_snp['pseudo'])
                                        if gene in row and ("FSHIFT" in row or 'TRUNC' in row) and (float(row[8])/float(row[7]) > 0.95):
@@ -419,7 +419,7 @@ class Serotyping:
 
     def _prediction(self,assemblie_file,cluster):
         sero = ''
-        
+
         #db_path = os.path.join(self.pneumcat_refs,'_'.join(sorted(self.cluster_serotype_dict[cluster])))
         if self.cluster_count[cluster] == 1:
             self.sero = self.cluster_serotype_dict[cluster][0]
@@ -436,7 +436,7 @@ class Serotyping:
             self._print_detailed_output(report_file,self.imp,self.sero)
 
 
-     
+
     def run(self):
         self.serotype_cluster_dict, self.cluster_serotype_dict,\
         self.cluster_count = Serotyping._serotype_2_cluster(self.cd_cluster)
@@ -446,7 +446,7 @@ class Serotyping:
         if self.best_serotype =='coverage to low':
            os.system('mkdir '+self.prefix)
            with open(self.prefix+'/pred.tsv', 'a') as fobj:
-               fobj.write(self.prefix+'\t'+self.best_serotype+'\n')			
+               fobj.write(self.prefix+'\t'+self.best_serotype+'\n')
         elif self.best_serotype == 'NT':
             os.system('mkdir '+self.prefix)
             with open(self.prefix+'/pred.tsv', 'a') as fobj:
@@ -462,4 +462,7 @@ class Serotyping:
                     if 'HET' in line:
                         flag = 'contamination'
             with open(self.prefix+'/pred.tsv', 'a') as fobj:
-                fobj.write(self.prefix+'\t'+self.sero+'\t'+flag+'\n')
+                if '24' in self.sero:
+                    fobj.write(self.prefix+'\tserogroup 24\t'+flag+'\n')
+                else:
+                    fobj.write(self.prefix+'\t'+self.sero+'\t'+flag+'\n')
