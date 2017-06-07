@@ -30,8 +30,8 @@ positional arguments:
 ```   
 ## Output
 In the folder 'prefix' you will find a pred.tsv including your predicted serotype
-as well as en file called detailed_serogroup_info including inforamtion about
-snps, genes, and alleles that are found in the cps sequence of your reads
+as well as en file called detailed_serogroup_info.txt including inforamtion about
+snps, genes, and alleles that are found in your reads
 ## Database
 You can use the CTV von PneumoCat by using seroba  getPneumocat. It is also
 possible so add new serotypes by adding the references sequence to the
