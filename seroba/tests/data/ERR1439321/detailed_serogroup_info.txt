@@ -1,12 +1,12 @@
 Predicted Serotype:	11A
-Serotype predicted by ariba	:#ariba_ref_name
-assemblie from ariba as an identy of: 	reads	 with this serotype
+Serotype predicted by ariba	:11A
+assemblie from ariba as an identy of: 	26448	 with this serotype
 Serotype 	 Genetic Variant
+11B	genes	wcwC_11A
+11D	pseudo	gct
+11D	genes	wcwC_11A
+11A	pseudo	gct
 11A	snps	['wcrL', '334', 'AAT']
 11A	genes	wcwC_11A
-11A	pseudo	gct
-11C	genes	wcwC_11A
 11C	pseudo	gct
-11B	genes	wcwC_11A
-11D	genes	wcwC_11A
-11D	pseudo	gct
+11C	genes	wcwC_11A

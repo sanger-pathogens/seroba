@@ -406,6 +406,7 @@ class Serotyping:
     def _print_detailed_output(self,report_file,relevant_genetic_elements,serotype):
         print(relevant_genetic_elements)
         with open(report_file,'r') as fobj:
+            next(fobj)
             first = fobj.readline().split('\t')
             with open(os.path.join(self.prefix,'detailed_serogroup_info.txt'),'w') as wobj:
                 wobj.write('Predicted Serotype:\t'+ serotype+'\n')
