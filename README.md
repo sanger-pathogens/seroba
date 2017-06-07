@@ -26,8 +26,12 @@ positional arguments:
     databases   path to database directory used for seroba createDBs
     read1       forward read file
     read2       backward read file
-    prefix      unique prefix used for output directory
-```    
+    prefix      unique prefix used for output directory (e.g sample id)
+```   
+## Output
+In the folder 'prefix' you will find a pred.tsv including your predicted serotype
+as well as en file called detailed_serogroup_info including inforamtion about
+snps, genes, and alleles that are found in the cps sequence of your reads
 ## Database
 You can use the CTV von PneumoCat by using seroba  getPneumocat. It is also
 possible so add new serotypes by adding the references sequence to the
