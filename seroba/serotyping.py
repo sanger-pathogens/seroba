@@ -17,7 +17,7 @@ import copy
 class Error (Exception): pass
 
 class Serotyping:
-    def __init__(self,databases, fw_reads, bw_reads, prefix):
+    def __init__(self,databases, fw_reads, bw_reads, prefix,clean):
 
         self.pneumcat_refs = os.path.join(databases,'streptococcus-pneumoniae-ctvdb')
         self.cd_cluster =  os.path.join(databases,'cd_cluster.tsv')
@@ -30,6 +30,7 @@ class Serotyping:
         self.ariba_cluster_db = os.path.join(databases,'ariba_db')
         self.reference_fasta = os.path.join(databases,'reference.fasta')
         self.meta_data_dict = ref_db_creator.RefDbCreator._read_meta_data_tsv(self.meta_data)
+        self.clean = clean
 
     @staticmethod
     def _serotype_2_cluster(cd_cluster):
@@ -73,7 +74,7 @@ class Serotyping:
                    max_kmer_count = unique_kmers
         shutil.rmtree(temp_dir)
         if max_kmer_count < 0.01:
-           self.best_serotype = 'coverage to low'
+           self.best_serotype = 'coverage too low'
         elif best_serotype != '':
             self.best_serotype = best_serotype
         else:
@@ -144,6 +145,9 @@ class Serotyping:
                                     serotype = '06C'
                                 elif snp =='A':
                                     serotype = '06D'
+
+            else:
+                serotype = 'serogroup 6'
 
         return serotype
 
@@ -436,6 +440,12 @@ class Serotyping:
                 self.cluster_serotype_dict[cluster],report_file,self.prefix)
             self._print_detailed_output(report_file,self.imp,self.sero)
 
+    def _clean(self):
+        files = os.listdir(self.prefix)
+        for f in files:
+            if 'pred.tsv' not in f or 'detailed_serogroup_info.txt' not in f :
+                path = os.path.join(self.prefix,f)
+                os.remove(path)
 
 
     def run(self):
@@ -444,7 +454,7 @@ class Serotyping:
         assemblie_file = self.prefix+'/assemblies.fa'
         self._run_kmc()
         print(self.best_serotype)
-        if self.best_serotype =='coverage to low':
+        if self.best_serotype =='coverage too low':
            os.system('mkdir '+self.prefix)
            with open(self.prefix+'/pred.tsv', 'a') as fobj:
                fobj.write(self.prefix+'\t'+self.best_serotype+'\n')
@@ -467,3 +477,8 @@ class Serotyping:
                     fobj.write(self.prefix+'\tserogroup 24\t'+flag+'\n')
                 else:
                     fobj.write(self.prefix+'\t'+self.sero+'\t'+flag+'\n')
+        shutil.rmtree(os.path.join(self.prefix,'ref'))
+        if os.path.isdir(os.path.join(self.prefix,'genes')):
+            shutil.rmtree(os.path.join(self.prefix,'genes'))
+        if clean:
+            self._clean()

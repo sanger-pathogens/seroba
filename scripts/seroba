@@ -52,6 +52,9 @@ subparser_runSerotyping.add_argument('read2', type=str, \
     help='backward read file')
 subparser_runSerotyping.add_argument('prefix', type=str, \
     help='unique prefix')
+subparser_runSerotyping.add_argument('prefix', type=str, \
+    help='unique prefix')
+subparser_runSerotyping.add_argument('--noclean', action='store_true', help='Do not clean up intermediate files')
 subparser_runSerotyping.set_defaults(func=seroba.tasks.sero_run.run)
 
 #-------------------------------version--------------------------------#

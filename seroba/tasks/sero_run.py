@@ -6,5 +6,6 @@ def run(options):
     sero = serotyping.Serotyping(options.databases,
     options.read1,
     options.read2,
-    options.prefix)
+    options.prefix,
+    clean = (not options.noclean))
     sero.run()
