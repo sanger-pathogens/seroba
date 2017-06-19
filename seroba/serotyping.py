@@ -17,7 +17,7 @@ import copy
 class Error (Exception): pass
 
 class Serotyping:
-    def __init__(self,databases, fw_reads, bw_reads, prefix,clean):
+    def __init__(self,databases, fw_reads, bw_reads, prefix,clean=True):
 
         self.pneumcat_refs = os.path.join(databases,'streptococcus-pneumoniae-ctvdb')
         self.cd_cluster =  os.path.join(databases,'cd_cluster.tsv')
@@ -443,7 +443,7 @@ class Serotyping:
     def _clean(self):
         files = os.listdir(self.prefix)
         for f in files:
-            if 'pred.tsv' not in f or 'detailed_serogroup_info.txt' not in f :
+            if 'pred.tsv' != f and 'detailed_serogroup_info.txt' != f :
                 path = os.path.join(self.prefix,f)
                 os.remove(path)
 
@@ -480,5 +480,5 @@ class Serotyping:
         shutil.rmtree(os.path.join(self.prefix,'ref'))
         if os.path.isdir(os.path.join(self.prefix,'genes')):
             shutil.rmtree(os.path.join(self.prefix,'genes'))
-        if clean:
+        if self.clean:
             self._clean()
