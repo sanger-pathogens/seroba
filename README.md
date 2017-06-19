@@ -1,13 +1,13 @@
 # SeroBA
-SeroBA is a kmer based Pipeline to identify the Serotype from Illumina NGS reads for given references. You can use SeroBA to download references from (https://github.com/phe-bioinformatics/PneumoCaT) to do identify the capsular type of S.pneumoniae.
+SeroBA is a k-mer based Pipeline to identify the Serotype from Illumina NGS reads for given references. You can use SeroBA to download references from (https://github.com/phe-bioinformatics/PneumoCaT) to do identify the capsular type of Streptococcus pneumoniae.
 ## Usage
 ```
 usage: seroba  getPneumocat out_dir
 
-Downlaods PneumoCat and build an tsv formated meta data file out of it
+Downloads PneumoCat and build an tsv formatted meta data file out of it
 
 positional arguments:
-  out_dir      directory to store the PneumoCaTs capsular type variant (CTV) database
+  out_dir      directory to store the PneumoCats capsular type variant (CTV) database
 
 
 usage: seroba createDBs  <database dir> <meta data tsv>
@@ -16,11 +16,11 @@ Creates a Database for kmc and ariba
 
 positional arguments:
     out_dir     output directory for kmc and ariba Database
-    kmer_size   kmer_size zou want to use for kmc , recommanded = 71
+    kmer_size   kmer_size zou want to use for kmc , recommended = 71
 
 usage: seroba runSerotyping  <databases dict> <read1> <read2> <prefix>
 
-indetify serotype of your input data
+identify serotype of your input data
 
 positional arguments:
     databases   path to database directory used for seroba createDBs
@@ -30,7 +30,7 @@ positional arguments:
 ```   
 ## Output
 In the folder 'prefix' you will find a pred.tsv including your predicted serotype
-as well as en file called detailed_serogroup_info.txt including inforamtion about
+as well as en file called detailed_serogroup_info.txt including information about
 snps, genes, and alleles that are found in your reads
 ## Database
 You can use the CTV von PneumoCat by using seroba  getPneumocat. It is also
@@ -68,5 +68,5 @@ docker pull sangerpathogens/seroba
 ```
 To use it you would use a command such as this (substituting in your directories), where your files are assumed to be stored in /home/ubuntu/data:
 ```
-docker run --rm -it -v /home/ubuntu/data:/data seroba seroba runSerotyping seroba/database /data/PHESPV1713.R1.fastq.gz /data/PHESPV1713.R2.fastq.gz  /data/output_folder
+docker run --rm -it -v /home/ubuntu/data:/data sangerpathogens/seroba seroba runSerotyping seroba/database /data/PHESPV1713.R1.fastq.gz /data/PHESPV1713.R2.fastq.gz  /data/output_folder
 ```    

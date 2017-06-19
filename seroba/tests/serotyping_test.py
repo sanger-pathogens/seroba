@@ -50,7 +50,7 @@ class TestSerotyping(unittest.TestCase):
         kmer_db = 'kmer_db'
         ariba_cluster_db = 'ariba_db'
         reference_fasta =os.path.join(data_dir,'serotype_object','reference.fasta')
-        s = serotyping.Serotyping( refs_dir,fw_read, bw_read, prefix)
+        s = serotyping.Serotyping( refs_dir,fw_read, bw_read, prefix,'--noclean')
         s._run_kmc()
         self.assertEqual(expected,s.best_serotype)
 
@@ -64,7 +64,7 @@ class TestSerotyping(unittest.TestCase):
         prefix = os.path.join(data_dir,'06B_1')
         reference_fasta =os.path.join(data_dir,'serotype_object','reference.fasta')
         cluster = 'cluster'
-        s = serotyping.Serotyping( refs_dir,fw_read, bw_read, prefix)
+        s = serotyping.Serotyping( refs_dir,fw_read, bw_read, prefix,'--noclean')
         s.cluster_serotype_dict = {
             'cluster' : ['06A','06B','06C','06D','06E'],
             'NT' : ['NT'],
@@ -90,9 +90,10 @@ class TestSerotyping(unittest.TestCase):
         fw_read = os.path.join(data_dir,'06B_1.fq.gz')
         bw_read = os.path.join(data_dir,'06B_2.fq.gz')
         prefix = os.path.join(data_dir,'06B_1')
+
         cluster = 'cluster'
         assemblie_file = os.path.join(prefix,'assemblies.fa')
-        s = serotyping.Serotyping(refs_dir,fw_read, bw_read, prefix)
+        s = serotyping.Serotyping(refs_dir,fw_read, bw_read, prefix,'--noclean')
         s.cluster_serotype_dict = {
             'cluster' : ['06A','06B','06C','06D','06E'],
             'NT' : ['NT'],
@@ -119,7 +120,7 @@ class TestSerotyping(unittest.TestCase):
         kmer_size = '51'
         cluster = 'cluster_2'
         assemblie_file = os.path.join(data_dir,'09V','assemblies.fa')
-        s = serotyping.Serotyping(refs_dir, fw_read, bw_read, prefix)
+        s = serotyping.Serotyping(refs_dir, fw_read, bw_read, prefix,'--noclean')
         s.cluster_serotype_dict = {
             'cluster' : ['06A','06B','06C','06D','06E'],
             'NT' : ['NT'],
@@ -144,7 +145,7 @@ class TestSerotyping(unittest.TestCase):
         prefix = os.path.join(data_dir,'15B_C')
         cluster = 'cluster_3'
         assemblie_file = os.path.join(data_dir,'15B_C','assemblies.fa')
-        s = serotyping.Serotyping(refs_dir, fw_read, bw_read, prefix)
+        s = serotyping.Serotyping(refs_dir, fw_read, bw_read, prefix,'--noclean')
         s.cluster_serotype_dict = {
             'cluster' : ['06A','06B','06C','06D','06E'],
             'NT' : ['NT'],
@@ -173,7 +174,7 @@ class TestSerotyping(unittest.TestCase):
         kmer_size = '51'
         cluster = 'cluster_2'
         assemblie_file = os.path.join(data_dir,'09V','assemblies.fa')
-        s = serotyping.Serotyping(refs_dir, fw_read, bw_read, prefix)
+        s = serotyping.Serotyping(refs_dir, fw_read, bw_read, prefix,'--noclean')
         s.cluster_serotype_dict = {
             'cluster' : ['06A','06B','06C','06D','06E'],
             'NT' : ['NT'],
@@ -199,7 +200,7 @@ class TestSerotyping(unittest.TestCase):
         kmer_size = '51'
         cluster = 'cluster_2'
         assemblie_file = os.path.join(data_dir,'ERR1440275','assemblies.fa')
-        s = serotyping.Serotyping(refs_dir, fw_read, bw_read, prefix)
+        s = serotyping.Serotyping(refs_dir, fw_read, bw_read, prefix,'--noclean')
         s.cluster_serotype_dict = {
             'cluster' : ['06A','06B','06C','06D','06E'],
             'NT' : ['NT'],
@@ -225,7 +226,7 @@ class TestSerotyping(unittest.TestCase):
         kmer_size = '51'
         cluster = 'cluster_2'
         assemblie_file = os.path.join(data_dir,'ERR1438851','assemblies.fa')
-        s = serotyping.Serotyping(refs_dir, fw_read, bw_read, prefix)
+        s = serotyping.Serotyping(refs_dir, fw_read, bw_read, prefix,'--noclean')
         s.cluster_serotype_dict = {
             'cluster' : ['06A','06B','06C','06D','06E'],
             'NT' : ['NT'],
@@ -251,7 +252,7 @@ class TestSerotyping(unittest.TestCase):
         kmer_size = '51'
         cluster = 'cluster_2'
         assemblie_file = os.path.join(data_dir,'ERR1438910','assemblies.fa')
-        s = serotyping.Serotyping(refs_dir, fw_read, bw_read, prefix)
+        s = serotyping.Serotyping(refs_dir, fw_read, bw_read, prefix,'--noclean')
         s.cluster_serotype_dict = {
             'cluster' : ['06A','06B','06C','06D','06E'],
             'NT' : ['NT'],
@@ -277,7 +278,7 @@ class TestSerotyping(unittest.TestCase):
         kmer_size = '51'
         cluster = 'cluster_2'
         assemblie_file = os.path.join(data_dir,'ERR1438894','assemblies.fa')
-        s = serotyping.Serotyping(refs_dir, fw_read, bw_read, prefix)
+        s = serotyping.Serotyping(refs_dir, fw_read, bw_read, prefix,'--noclean')
         s.cluster_serotype_dict = {
             'cluster' : ['06A','06B','06C','06D','06E'],
             'NT' : ['NT'],
@@ -302,7 +303,7 @@ class TestSerotyping(unittest.TestCase):
         kmer_size = '51'
         cluster = 'cluster_1'
         assemblie_file = os.path.join(data_dir,'ERR1439287','assemblies.fa')
-        s = serotyping.Serotyping(refs_dir, fw_read, bw_read, prefix)
+        s = serotyping.Serotyping(refs_dir, fw_read, bw_read, prefix,'--noclean')
         s.cluster_serotype_dict = {
             'cluster' : ['06A','06B','06C','06D','06E'],
             'NT' : ['NT'],
@@ -355,7 +356,7 @@ class TestSerotyping(unittest.TestCase):
          kmer_size = '51'
          cluster = 'cluster_2'
          assemblie_file = os.path.join(data_dir,'ERR1439321','assemblies.fa')
-         s = serotyping.Serotyping(refs_dir, fw_read, bw_read, prefix)
+         s = serotyping.Serotyping(refs_dir, fw_read, bw_read, prefix,'--noclean')
          s.cluster_serotype_dict = {
              'cluster' : ['06A','06B','06C','06D','06E'],
              'NT' : ['NT'],
@@ -376,7 +377,7 @@ class TestSerotyping(unittest.TestCase):
         fw_read = os.path.join(data_dir,'09V','09V_1.fq.gz')
         bw_read = os.path.join(data_dir,'09V','09V_2.fq.gz')
         prefix = os.path.join('09V')
-        s = serotyping.Serotyping(refs_dir, fw_read, bw_read, prefix)
+        s = serotyping.Serotyping(refs_dir, fw_read, bw_read, prefix,'--noclean')
         s.run()
         self.assertEqual(expected,s.sero)
 
@@ -388,4 +389,4 @@ class TestSerotyping(unittest.TestCase):
        prefix = os.path.join('23F')
        s = serotyping.Serotyping(refs_dir, fw_read, bw_read, prefix)
        s.run()
-       self.assertEqual(expected,s.sero)"""	
+       self.assertEqual(expected,s.sero)"""

@@ -3,6 +3,7 @@ __all__ = [
     'getPneumocat',
     'createDBs',
     'sero_run',
+    'summ',
 
 ]
 
