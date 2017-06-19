@@ -57,6 +57,15 @@ subparser_runSerotyping.add_argument('prefix', type=str, \
 subparser_runSerotyping.add_argument('--noclean', action='store_true', help='Do not clean up intermediate files')
 subparser_runSerotyping.set_defaults(func=seroba.tasks.sero_run.run)
 
+#-------------------------------serotyping--------------------------------#
+subparser_summaries = subparsers.add_parser(
+    'summary',
+    help='output folder has to contain all folders with prediction results',
+    usage='seroba summary  <output folder>',
+    description='writes all predictions in one tsv file'
+)
+subparser_runSerotyping.add_argument('out_dir', type=str, \
+    help='path to output folder')
 #-------------------------------version--------------------------------#
 
 subparser_version = subparsers.add_parser(
