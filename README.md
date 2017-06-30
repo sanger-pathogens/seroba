@@ -27,11 +27,25 @@ positional arguments:
     read1       forward read file
     read2       backward read file
     prefix      unique prefix used for output directory (e.g sample id)
+
+
+Summaries the output in one tsv file
+
+usage: seroba summary  <output folder>
+
+positional arguments:
+  out folder  directory where the output directories from seroba runSerotyping are stored
+
+
 ```   
+
 ## Output
 In the folder 'prefix' you will find a pred.tsv including your predicted serotype
 as well as en file called detailed_serogroup_info.txt including information about
-snps, genes, and alleles that are found in your reads
+snps, genes, and alleles that are found in your reads.
+After the use of "seroba summary" a tsv file called summary.tsv is created that
+consists of two columns (sample Id , serotype).
+
 ## Database
 You can use the CTV von PneumoCat by using seroba  getPneumocat. It is also
 possible so add new serotypes by adding the references sequence to the
@@ -68,5 +82,5 @@ docker pull sangerpathogens/seroba
 ```
 To use it you would use a command such as this (substituting in your directories), where your files are assumed to be stored in /home/ubuntu/data:
 ```
-docker run --rm -it -v /home/ubuntu/data:/data sangerpathogens/seroba seroba runSerotyping seroba/database /data/PHESPV1713.R1.fastq.gz /data/PHESPV1713.R2.fastq.gz  /data/output_folder
+docker run --rm -it -v /home/ubuntu/data:/data sangerpathogens/seroba seroba runSerotyping seroba/database /data/read_1.fastq.gz /data/read_2.fastq.gz  /data/output_folder
 ```    
