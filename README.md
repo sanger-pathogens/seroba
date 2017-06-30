@@ -34,7 +34,7 @@ Summaries the output in one tsv file
 usage: seroba summary  <output folder>
 
 positional arguments:
-  out folder  directory where the output directories from seroba runSerotyping are stored
+  output folder   directory where the output directories from seroba runSerotyping are stored
 
 
 ```   
