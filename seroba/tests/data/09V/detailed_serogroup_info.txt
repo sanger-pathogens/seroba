@@ -1,15 +1,15 @@
 Predicted Serotype:	09V
 Serotype predicted by ariba	:09A
-assemblie from ariba as an identy of: 	53306	 with this serotype
+assembly from ariba as an identiy of: 	53306	 with this serotype
 Serotype 	 Genetic Variant
 09L	genes	wcjD
 09L	snps	['wcjA', '528', 'GAT']
+09L	snps	['wcjA', '636', 'GAT']
 09L	snps	['wcjA', '429', 'GGT']
 09L	snps	['wcjA', '852', 'GCA']
-09L	snps	['wcjA', '636', 'GAT']
-09V	pseudo	wcjE
 09V	genes	wcjD
+09V	pseudo	wcjE
 09N	genes	wcjD
-09N	snps	['wcjA', '414', 'TAT']
 09N	snps	['wcjA', '957', 'ACT']
+09N	snps	['wcjA', '414', 'TAT']
 09A	genes	wcjD
