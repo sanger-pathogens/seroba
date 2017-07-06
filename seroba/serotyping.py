@@ -415,7 +415,7 @@ class Serotyping:
             with open(os.path.join(self.prefix,'detailed_serogroup_info.txt'),'w') as wobj:
                 wobj.write('Predicted Serotype:\t'+ serotype+'\n')
                 wobj.write('Serotype predicted by ariba\t:' +first[0]+'\n')
-                wobj.write('assemblie from ariba as an identy of: \t'+ first[5]+'\t with this serotype\n')
+                wobj.write('assembly from ariba as an identiy of: \t'+ first[5]+'\t with this serotype\n')
                 wobj.write('Serotype \t Genetic Variant\n')
                 for serotype in relevant_genetic_elements:
                     for genetic_var in relevant_genetic_elements[serotype]:
