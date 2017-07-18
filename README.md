@@ -18,15 +18,22 @@ positional arguments:
     out_dir     output directory for kmc and ariba Database
     kmer_size   kmer_size zou want to use for kmc , recommended = 71
 
-usage: seroba runSerotyping  <databases dict> <read1> <read2> <prefix>
+    usage: seroba runSerotyping [options]  <databases directory> <read1> <read2> <prefix>
 
-identify serotype of your input data
+    identify serotype of your input data
 
-positional arguments:
-    databases   path to database directory used for seroba createDBs
-    read1       forward read file
-    read2       backward read file
-    prefix      unique prefix used for output directory (e.g sample id)
+    positional arguments:
+      databases          path to database directory
+      read1              forward read file
+      read2              backward read file
+      prefix             unique prefix
+
+    optional arguments:
+      -h, --help         show this help message and exit
+
+    Other options:
+      --noclean NOCLEAN  Do not clean up intermediate files (assemblies, ariba
+                         report)
 
 
 Summaries the output in one tsv file
@@ -34,7 +41,7 @@ Summaries the output in one tsv file
 usage: seroba summary  <output folder>
 
 positional arguments:
-  out folder  directory where the output directories from seroba runSerotyping are stored
+  output folder   directory where the output directories from seroba runSerotyping are stored
 
 
 ```   
