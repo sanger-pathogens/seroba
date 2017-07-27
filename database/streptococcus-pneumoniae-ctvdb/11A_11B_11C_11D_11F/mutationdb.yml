@@ -1,0 +1,7 @@
+{genes: {11A: {wcjE: 1, wcwC_11A: 1, wcwR: 0}, 11B: {wcjE: 0, wcwC_11A: 0, wcwR: 1},
+    11C: {wcjE: 0, wcwC_11A: 0, wcwR: 1}, 11D: {wcjE: 1, wcwC_11A: 1, wcwR: 0}, 11F: {
+      wcjE: 1, wcwC_11F: 1, wcwR: 0}}, pseudo: {11A: {gct: [0, [!!python/tuple [130,
+            131], A]]}, 11B: {gct: [1, [!!python/tuple [130, 131], '-']]}, 11C: {
+      gct: [0, [!!python/tuple [130, 131], A]]}, 11D: {gct: [0, [!!python/tuple [
+            130, 131], A]]}, 11F: {gct: [1, [!!python/tuple [130, 131], '-']]}}, snps: {
+    wcrL: {334: {11A: [AAT, 111, N], 11D: [AGT, 111, S], 11F: [GCT, 111, A]}}}}

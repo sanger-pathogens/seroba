@@ -1,7 +1,7 @@
 Predicted Serotype:	15B/15C
 Serotype predicted by ariba	:15C
-assembly from ariba as an identiy of: 	44368	 with this serotype
+assembly from ariba as an identiy of: 	99.38	 with this serotype
 Serotype 	 Genetic Variant
 15B	pseudo	wciZ
-15B	allele	wzd
 15B	allele	wchL
+15B	allele	wzd

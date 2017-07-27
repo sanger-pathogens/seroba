@@ -17,7 +17,7 @@ import copy
 class Error (Exception): pass
 
 class Serotyping:
-    def __init__(self,databases, fw_reads, bw_reads, prefix,clean=True):
+    def __init__(self,databases, fw_reads, bw_reads, prefix,clean=True,cov=20):
 
         self.pneumcat_refs = os.path.join(databases,'streptococcus-pneumoniae-ctvdb')
         self.cd_cluster =  os.path.join(databases,'cd_cluster.tsv')
@@ -31,6 +31,7 @@ class Serotyping:
         self.reference_fasta = os.path.join(databases,'reference.fasta')
         self.meta_data_dict = ref_db_creator.RefDbCreator._read_meta_data_tsv(self.meta_data)
         self.clean = clean
+        self.cov = cov/100.0
 
     @staticmethod
     def _serotype_2_cluster(cd_cluster):
@@ -52,7 +53,7 @@ class Serotyping:
     #kmc on fw_read
         temp_dir = tempfile.mkdtemp(prefix = 'temp.kmc', dir=os.getcwd())
         kmer_db_list = os.listdir(self.kmer_db)
-        kmer_count = 0.2
+        kmer_count = self.cov
         max_kmer_count = 0.0
         best_serotype = ''
         kmer_count_files = kmc.run_kmc(self.fw_read,self.kmer_size,temp_dir,self.prefix)
@@ -125,6 +126,7 @@ class Serotyping:
                                         serotype = '6E(6B)'
 
             elif 'wciN_1'in row_dict:
+
                 for seq_id in row_dict:
                     if 'wciP' in seq_id:
                         for seq in record:
@@ -132,6 +134,13 @@ class Serotyping:
                                 snp = (record[seq].seq[583])
                                 if snp == 'G':
                                     serotype = '06A'
+                                    if 'wciN_1' in seq_id:
+                                        for seq in record:
+                                            if row_dict[seq_id] in seq:
+                                                if  (record[seq].seq[488]) == 'A':
+                                                    serotype = '06F'
+                                                elif (record[seq].seq[113]) == 'A':
+                                                    serotype = '06G'
                                 elif snp =='A':
                                     serotype = '06B'
 
@@ -415,7 +424,7 @@ class Serotyping:
             with open(os.path.join(self.prefix,'detailed_serogroup_info.txt'),'w') as wobj:
                 wobj.write('Predicted Serotype:\t'+ serotype+'\n')
                 wobj.write('Serotype predicted by ariba\t:' +first[0]+'\n')
-                wobj.write('assembly from ariba as an identiy of: \t'+ first[5]+'\t with this serotype\n')
+                wobj.write('assembly from ariba as an identiy of: \t'+ first[9]+'\t with this serotype\n')
                 wobj.write('Serotype \t Genetic Variant\n')
                 for serotype in relevant_genetic_elements:
                     for genetic_var in relevant_genetic_elements[serotype]:
@@ -461,7 +470,7 @@ class Serotyping:
         elif self.best_serotype == 'NT':
             os.system('mkdir '+self.prefix)
             with open(self.prefix+'/pred.tsv', 'a') as fobj:
-                fobj.write(self.prefix+'\tNT\n')
+                fobj.write(self.prefix+'\tuntypable\n')
         else:
             cluster = self.serotype_cluster_dict[self.best_serotype]
             self._run_ariba_on_cluster(cluster)
