@@ -8,8 +8,8 @@
 06C	06A	06C	1	ref
 06D	06A	06D	1	ref
 06E	06A	06E	1	ref
-06F 06A 06F 1 ref
-06G 06A 06G 1 ref
+06F	06A	06F	1	ref
+06G	06A	06G	1	ref
 07A	07A	07A	1	ref
 07B	07B	07B	1	ref
 07C	07B	07C	1	ref
@@ -23,12 +23,13 @@
 10B	10A	10B	1	ref
 10C	10C	10C	1	ref
 10F	10C	10F	1	ref
+10X	10X	10X	1	ref
 11A	11A	11A	1	ref
 11B	11A	11B	1	ref
 11C	11A	11C	1	ref
 11D	11A	11D	1	ref
 11F	11A	11F	1	ref
-11E 11A 11E 1 ref
+11E	11A	11E	1	ref
 12A	12A	12A	1	ref
 12B	12A	12B	1	ref
 12F	12A	12F	1	ref
@@ -78,12 +79,14 @@
 34	34	34	1	ref
 35A	35A	35A	1	ref
 35B	35B	35B	1	ref
+35D	35B	35D	1	ref
 35C	35A	35C	1	ref
 35F	35F	35F	1	ref
 36	36	36	1	ref
 37	33A	37	1	ref
 38	25A	38	1	ref
 39	39	39	1	ref
+39X	39X	39X	1	ref
 40	07B	40	1	ref
 41A	41A	41A	1	ref
 41F	41A	41F	1	ref
@@ -218,6 +221,8 @@ wciX	18A	18F	0	genes	1
 wciX	18A	18F	1	pseudo	0
 wciZ	15A	15B	1	pseudo	0
 wciZ	15A	15C	1	pseudo	1
+wciG	35B	35B	1	pseudo	0
+wciG	35B	35D	1	pseudo	1
 wcjA_09L	09A	09L	0	snps	414	CAT
 wcjA_09L	09A	09L	0	snps	429	GGT
 wcjA_09L	09A	09L	0	snps	528	GAT
@@ -429,5 +434,5 @@ wzy_12B	12A	12B	0	snps	251	ACT
 wzy_12F	12A	12F	0	snps	251	ACT
 wzy_44	12A	44	0	snps	251	ACT
 wzy_46	12A	46	0	snps	251	ACT
-alternative_aliB_NT     alternative_aliB_NT     alternative_aliB_NT     1       ref
-Swiss_NT        Swiss_NT        Swiss_NT        1       ref
+alternative_aliB_NT	alternative_aliB_NT	alternative_aliB_NT	1	ref
+Swiss_NT	Swiss_NT	Swiss_NT	1	ref

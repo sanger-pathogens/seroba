@@ -30,7 +30,7 @@ class RefDbCreator:
 
     def _split_meta_data2serogroup(self,serogroup):
 
-
+        print (serogroup)
         record_dict = SeqIO.to_dict(SeqIO.parse(self.ref_fasta, "fasta"))
         serogroup_fasta = os.path.join(os.path.dirname(self.out_dir),'streptococcus-pneumoniae-ctvdb',serogroup+'.fasta')
 
@@ -210,7 +210,7 @@ class RefDbCreator:
                     elif row[4] == 'pseudo':
                         meta_data_dict[row[1]]['pseudo'].update({row[2]:{row[0]:row[5]}})
                     elif row[4] == 'genes':
-                        
+
                         if row[2] in meta_data_dict[row[1]]['genes']:
                             print(meta_data_dict[row[1]]['genes'][row[2]])
                             meta_data_dict[row[1]]['genes'][row[2]][row[0]]=row[5]
