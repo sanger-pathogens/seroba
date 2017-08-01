@@ -10,13 +10,13 @@ positional arguments:
   out_dir      directory to store the PneumoCats capsular type variant (CTV) database
 
 
-usage: seroba createDBs  <database dir> <meta data tsv>
+usage: seroba createDBs  <database dir> <kmer size>
 
 Creates a Database for kmc and ariba
 
 positional arguments:
-    out_dir     output directory for kmc and ariba Database
-    kmer_size   kmer_size zou want to use for kmc , recommended = 71
+    database dir     output directory for kmc and ariba Database
+    kmer size   kmer_size you want to use for kmc , recommended = 71
 
     usage: seroba runSerotyping [options]  <databases directory> <read1> <read2> <prefix>
 
@@ -34,6 +34,7 @@ positional arguments:
     Other options:
       --noclean NOCLEAN  Do not clean up intermediate files (assemblies, ariba
                          report)
+      --coverage COVERAGE  threshold for k-mer coverage of the reference sequence (default = 20)                         
 
 
 Summaries the output in one tsv file
