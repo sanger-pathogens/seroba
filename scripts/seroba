@@ -54,10 +54,10 @@ subparser_runSerotyping.add_argument('prefix', type=str, \
     help='unique prefix')
 
 other_run_group = subparser_runSerotyping.add_argument_group('Other options')
-other_run_group.add_argument('--noclean', type=str, \
+other_run_group.add_argument('--noclean', action='store_true',\
     help='Do not clean up intermediate files (assemblies, ariba report)')
-other_run_group.add_argument('--coverage', type=int, \
-    help='threshold for k-mer coverage of the reference sequence ')
+other_run_group.add_argument('--coverage', type=int,\
+    help='threshold for k-mer coverage of the reference sequence , default = 20 ')
 
 subparser_runSerotyping.set_defaults(func=seroba.tasks.sero_run.run)
 
