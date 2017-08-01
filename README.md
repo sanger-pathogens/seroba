@@ -38,6 +38,7 @@ positional arguments:
       --coverage COVERAGE  threshold for k-mer coverage of the reference sequence (default = 20)                         
 
 
+
 Summaries the output in one tsv file
 
 usage: seroba summary  <output folder>
