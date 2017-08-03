@@ -10,6 +10,7 @@ from Bio.Alphabet import generic_dna
 import pprint
 import pyfastaq
 import shutil
+import glob
 
 class Error (Exception): pass
 
@@ -42,7 +43,7 @@ class RefDbCreator:
 
             print("no such file")
 
-        self.temp_dir = tempfile.mkdtemp(prefix = 'temp_ariba', dir=os.getcwd())
+        self.temp_dir = tempfile.mkdtemp(prefix = 'temp_aribaX', dir=os.getcwd())
         self.temp_fasta_ref = os.path.join(self.temp_dir,'temp_fasta_ref.fasta')
         self.temp_meta_ref = os.path.join(self.temp_dir,'temp_meta_ref.tsv')
         self.temp_fasta_genes = os.path.join(self.temp_dir,'temp_fasta_genes.fasta')
@@ -73,6 +74,7 @@ class RefDbCreator:
             os.system('cat '+self.temp_meta_ref+ ' '+ self.temp_meta_genes+ ' > '+self.temp_meta)
         else:
             shutil.copyfile(self.temp_meta_ref,self.temp_meta)
+
         #copy all seqs to temp fasta
         #format lines to ariba valid format
     @staticmethod
@@ -82,8 +84,6 @@ class RefDbCreator:
             temp_cdhit_cluster_ref = os.path.join(temp_dir,'cdhit_cluster_ref')
             temp_cdhit_cluster_genes = os.path.join(temp_dir,'cdhit_cluster_genes')
             with open(temp_cdhit_cluster_ref,'w') as wobj:
-
-
                 ref_seqs = []
                 prefs = {}
                 genes = []
@@ -118,7 +118,7 @@ class RefDbCreator:
                     if got == False:
 
                         meta_data.append([row[0],'0']+row[2:])
-                        print ([row[0],'0']+row[2:])
+
                     else:
                         meta_data.append(row)
                 else:
@@ -208,11 +208,14 @@ class RefDbCreator:
                             meta_data_dict[row[1]]['snps'][row[0].split('_')[0]][row[5]].update({row[2]:row[6]})
 
                     elif row[4] == 'pseudo':
-                        meta_data_dict[row[1]]['pseudo'].update({row[2]:{row[0]:row[5]}})
+                        if row[2] not in meta_data_dict[row[1]]['pseudo']:
+                            meta_data_dict[row[1]]['pseudo'].update({row[2]:{row[0]:row[5]}})
+                        else:
+                            meta_data_dict[row[1]]['pseudo'][row[2]].update({row[0]:row[5]})
                     elif row[4] == 'genes':
-                        
+
                         if row[2] in meta_data_dict[row[1]]['genes']:
-                            print(meta_data_dict[row[1]]['genes'][row[2]])
+
                             meta_data_dict[row[1]]['genes'][row[2]][row[0]]=row[5]
 
                         else:
@@ -234,14 +237,13 @@ class RefDbCreator:
 
     def run(self):
         self.meta_dict = self._read_meta_data_tsv(self.meta_data_tsv)
-
-        pprint.pprint(self.meta_dict['11A'])
         os.makedirs(os.path.join(self.out_dir,'ariba_db'))
         cdhit_cluster = RefDbCreator._create_complete_cdhit_cluster(self.meta_data_tsv,self.out_dir)
         self._create_complete_ariba_db(cdhit_cluster)
         for serogroup in self.meta_dict:
 
             self._split_meta_data2serogroup(serogroup)
+
             self.cdhit_clusters_ref, self.cdhit_clusters_genes = self._create_cdhit_cluster_file(self.temp_dir,self.temp_meta)
 
             gene_fasta =  os.path.join(os.path.dirname(self.out_dir),'streptococcus-pneumoniae-ctvdb',serogroup+'.fasta')
@@ -251,7 +253,10 @@ class RefDbCreator:
             if os.path.isfile(self.temp_meta_genes):
                 RefDbCreator._create_ariba_db(self.temp_fasta_genes,self.temp_meta_genes,self.cdhit_clusters_genes,serogroup,self.out_dir,'genes')
             shutil.rmtree(self.temp_dir)
+
         self._create_kmc_db()
         kmer_info = os.path.join(self.out_dir,'kmer_size.txt')
         with open(kmer_info,'w') as fobj:
             fobj.write(self.kmer_size)
+        listing = glob.glob('temp_ariba*')
+        shutil.rmtree(listing[0])

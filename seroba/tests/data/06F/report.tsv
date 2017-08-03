@@ -1,0 +1,6 @@
+#ariba_ref_name	ref_name	gene	var_only	flag	reads	cluster	ref_len	ref_base_assembled	pc_ident	ctg	ctg_len	ctg_cov	known_var	var_type	var_seq_type	known_var_change	has_known_var	ref_ctg_change	ref_ctg_effect	ref_start	ref_end	ref_nt	ctg_start	ctg_end	ctg_nt	smtls_total_depth	smtls_nts	smtls_nts_depth	var_description	free_text
+06A	06A	0	0	563	68194	cluster	14796	14796	99.99	cluster.l15.c30.ctg.1	16172	222.3	0	.	n	.	0	C3377T	SNP	3377	3377	C	3723	3723	T	249	T	246	.	.
+06A	06A	0	0	563	68194	cluster	14796	14796	99.99	cluster.l15.c30.ctg.1	16172	222.3	0	.	n	.	0	G5504A	SNP	5504	5504	G	5850	5850	A	203	A	200	.	.
+#ariba_ref_name	ref_name	gene	var_only	flag	reads	cluster	ref_len	ref_base_assembled	pc_ident	ctg	ctg_len	ctg_cov	known_var	var_type	var_seq_type	known_var_change	has_known_var	ref_ctg_change	ref_ctg_effect	ref_start	ref_end	ref_nt	ctg_start	ctg_end	ctg_nt	smtls_total_depth	smtls_nts	smtls_nts_depth	var_description	free_text
+wciN_1	wciN_1	1	0	539	3048	cluster	945	945	99.89	cluster.l6.c4.ctg.1	1742	126.3	0	.	p	.	0	A150T	NONSYN	448	450	GCT	901	903	ACT	198;196;194	A;C;T	195;196;193	.	.
+wciP_06A	wciP_06A	1	0	27	3128	cluster_1	987	987	100.0	cluster_1.l6.c30.ctg.1	1635	139.1	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.

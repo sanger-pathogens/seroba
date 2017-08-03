@@ -371,6 +371,31 @@ class TestSerotyping(unittest.TestCase):
          }
          s._prediction(assemblie_file,cluster)
          self.assertEqual(expected,s.sero)
+    def test_06F(self):
+         expected = '06F'
+         refs_dir = os.path.join(data_dir,'serotype_object')
+         cd_cluster = os.path.join(data_dir,'test_serotype_2_cluster.tsv')
+         fw_read = os.path.join(data_dir,'09V','09V_1.fq.gz')
+         bw_read = os.path.join(data_dir,'09V','09V_2.fq.gz')
+         prefix = os.path.join(data_dir,'06F')
+         kmer_size = '51'
+         cluster = 'cluster'
+         assemblie_file = os.path.join(data_dir,'06F','assemblies.fa')
+         s = serotyping.Serotyping(refs_dir, fw_read, bw_read, prefix,'--noclean')
+         s.cluster_serotype_dict = {
+             'cluster' : ['06A','06B','06C','06D','06E','06F','06G'],
+             'NT' : ['NT'],
+             'cluster_1' : ['07A','07F'],
+             'cluster_2':['11A','11B','11C','11D','11F']        }
+         s.best_serotype = '06A'
+         s.cluster_count = {
+         'cluster': 7,
+         'NT': 1,
+         'cluster_1': 2,
+         'cluster_2': 3
+         }
+         s._prediction(assemblie_file,cluster)
+         self.assertEqual(expected,s.sero)
     def full_run_09V(self):
         expected = '09V'
         refs_dir = os.path.join(data_dir,'serotype_object')
