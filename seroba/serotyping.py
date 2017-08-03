@@ -135,13 +135,14 @@ class Serotyping:
                                 snp = (record[seq].seq[583])
                                 if snp == 'G':
                                     serotype = '06A'
-                                    if 'wciN_1' in seq_id:
-                                        for seq in record:
-                                            if row_dict[seq_id] in seq:
-                                                if  (record[seq].seq[488]) == 'A':
-                                                    serotype = '06F'
-                                                elif (record[seq].seq[113]) == 'A':
-                                                    serotype = '06G'
+                                    for seq_id_2 in row_dict:
+                                        if 'wciN_1' in seq_id_2:
+                                            for seq_2 in record:
+                                                if row_dict[seq_id_2] in seq_2:
+                                                    if  (record[seq_2].seq[447]) == 'A':
+                                                        serotype = '06F'
+                                                    elif (record[seq_2].seq[112]) == 'A':
+                                                        serotype = '06G'
                                 elif snp =='A':
                                     serotype = '06B'
 
