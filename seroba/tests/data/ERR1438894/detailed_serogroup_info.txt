@@ -1,5 +1,5 @@
 Predicted Serotype:	33F
 Serotype predicted by ariba	:33F
-assembly from ariba as an identiy of: 	21192	 with this serotype
+assembly from ariba as an identiy of: 	99.98	 with this serotype
 Serotype 	 Genetic Variant
 33A	pseudo	wcjE
