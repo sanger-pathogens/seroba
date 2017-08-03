@@ -487,7 +487,7 @@ class Serotyping:
                     fobj.write(self.prefix+'\tserogroup 24\t'+flag+'\n')
                 else:
                     fobj.write(self.prefix+'\t'+self.sero+'\t'+flag+'\n')
-        shutil.rmtree(os.path.join(self.prefix,'ref'))
+            shutil.rmtree(os.path.join(self.prefix,'ref'))
         if os.path.isdir(os.path.join(self.prefix,'genes')):
             shutil.rmtree(os.path.join(self.prefix,'genes'))
         if self.clean:
