@@ -114,11 +114,8 @@ class RefDbCreator:
                 if row[1] == '1':
                     seq = pyfastaq.sequences.Fasta(row[0], record_serogroup_dict[row[0]].seq)
                     got = seq.looks_like_gene()
-
                     if got == False:
-
                         meta_data.append([row[0],'0']+row[2:])
-
                     else:
                         meta_data.append(row)
                 else:
@@ -243,14 +240,13 @@ class RefDbCreator:
         for serogroup in self.meta_dict:
 
             self._split_meta_data2serogroup(serogroup)
-
             self.cdhit_clusters_ref, self.cdhit_clusters_genes = self._create_cdhit_cluster_file(self.temp_dir,self.temp_meta)
-
             gene_fasta =  os.path.join(os.path.dirname(self.out_dir),'streptococcus-pneumoniae-ctvdb',serogroup+'.fasta')
             RefDbCreator._check_meta_data(self.temp_meta,gene_fasta)
             os.makedirs(os.path.join(self.out_dir,'ariba_db',serogroup))
             RefDbCreator._create_ariba_db(self.temp_fasta_ref,self.temp_meta_ref,self.cdhit_clusters_ref,serogroup,self.out_dir,'ref')
             if os.path.isfile(self.temp_meta_genes):
+                RefDbCreator._check_meta_data(self.temp_meta_genes,gene_fasta)
                 RefDbCreator._create_ariba_db(self.temp_fasta_genes,self.temp_meta_genes,self.cdhit_clusters_genes,serogroup,self.out_dir,'genes')
             shutil.rmtree(self.temp_dir)
 

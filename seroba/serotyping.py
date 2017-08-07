@@ -105,9 +105,12 @@ class Serotyping:
 
     @staticmethod
     def serotype6(assemblie_file,report_file):
-        os.system('gzip -d '+assemblie_file)
+        #os.system('gzip -d '+assemblie_file)
+        with open(report_file,'r') as fobj:
+            next(fobj)
+            first = fobj.readline().split('\t')[0]
         with open(report_file) as fobj:
-            serotype = ''
+            serotype = 'possible '+first+'\t but wciP gene might not be complete'
             tsvin = csv.reader(fobj, delimiter='\t')
             next(tsvin,None)
             row_dict = {}
@@ -127,7 +130,6 @@ class Serotyping:
                                         serotype = '6E(6B)'
 
             elif 'wciN_1'in row_dict:
-
                 for seq_id in row_dict:
                     if 'wciP' in seq_id:
                         for seq in record:
@@ -157,8 +159,7 @@ class Serotyping:
                                 elif snp =='A':
                                     serotype = '06D'
 
-            else:
-                serotype = 'serogroup 6'
+
 
         return serotype
 
