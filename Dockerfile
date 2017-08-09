@@ -13,4 +13,4 @@ RUN cd seroba  && ./install_dependencies.sh
 env PATH /seroba/build:$PATH
 RUN export PATH
 RUN cd seroba && python3 setup.py install
-RUN cd seroba && seroba getPneumocat database && seroba createDBs database/ 71
+RUN cd seroba && seroba createDBs database/ 71

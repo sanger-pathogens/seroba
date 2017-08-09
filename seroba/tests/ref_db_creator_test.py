@@ -105,10 +105,11 @@ class TestRefDbCreator(unittest.TestCase):
     def test__check_meta_data(self):
         expected_meta_data =  os.path.join(data_dir,'test_check_meta_data.tsv')
         meta_data =  os.path.join(data_dir,'meta6.tsv')
+        meta2 =os.path.join(data_dir,'meta6_2.tsv')
         gene_fasta = os.path.join(data_dir,'06A.fasta')
         ref_db_creator.RefDbCreator._check_meta_data(meta_data,gene_fasta)
         self.assertTrue(filecmp.cmp(meta_data,expected_meta_data ), 'files are not equal')
-
+        os.system("cp "+ meta2+" "+meta_data)
     def test__create_ariba_db(self):
 
         fasta_file =  os.path.join(data_dir,'test__create_ariba_db','expected_ref_fasta.fa')

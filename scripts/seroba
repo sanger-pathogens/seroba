@@ -15,7 +15,7 @@ subparsers = parser.add_subparsers(title='Available commands', help='', metavar=
 subparser_getPneumocat = subparsers.add_parser(
     'getPneumocat',
     help='downloads genetic information from PneumoCat',
-    usage='seroba getPneumocat  <out_dir>',
+    usage='seroba getPneumocat  <database dir>',
     description='Downlaods PneumoCat and build an tsv formated meta data file out of it',
 )
 subparser_getPneumocat.add_argument('out_dir', type=str, \

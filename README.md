@@ -3,12 +3,12 @@ SeroBA is a k-mer based Pipeline to identify the Serotype from Illumina NGS read
 ## Usage
 Since SeroBA v0.1.3 an updated variant of the CTV from PneumoCat is provided in the SeroBA package. This includes the serotypes 6E, 6F, 11E, 10X, 39X and two NT references. It is not necessary to use SeroBA getPneumocat. You can directly start with seroba createDBs with the database folder from this repository. It is recommended to make a working copy of it.
 ```
-usage: seroba  getPneumocat out_dir
+usage: seroba  getPneumocat <database dir>
 
 Downloads PneumoCat and build an tsv formatted meta data file out of it
 
 positional arguments:
-  out_dir      directory to store the PneumoCats capsular type variant (CTV) database
+  database dir      directory to store the PneumoCats capsular type variant (CTV) database
 
 
 usage: seroba createDBs  <database dir> <kmer size>
@@ -21,12 +21,14 @@ positional arguments:
 
     usage: seroba runSerotyping [options]  <databases directory> <read1> <read2> <prefix>
 
-    identify serotype of your input data
+    Example : seroba createDBs my_database/ 71
+
+Identify serotype of your input data
 
     positional arguments:
-      databases          path to database directory
+      database dir         path to database directory
       read1              forward read file
-      read2              backward read file
+      read2              reverse read file
       prefix             unique prefix
 
     optional arguments:
@@ -36,6 +38,7 @@ positional arguments:
       --noclean NOCLEAN  Do not clean up intermediate files (assemblies, ariba
                          report)
       --coverage COVERAGE  threshold for k-mer coverage of the reference sequence (default = 20)                         
+
 
 
 
@@ -54,7 +57,8 @@ In the folder 'prefix' you will find a pred.tsv including your predicted serotyp
 as well as en file called detailed_serogroup_info.txt including information about
 snps, genes, and alleles that are found in your reads.
 After the use of "seroba summary" a tsv file called summary.tsv is created that
-consists of two columns (sample Id , serotype).
+consists of three columns (sample Id , serotype, comments).
+Serotypes that do not match any reference are marked as "untypable"(v0.1.3).
 
 ## Database
 You can use the CTV von PneumoCat by using seroba  getPneumocat. It is also
