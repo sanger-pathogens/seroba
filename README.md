@@ -78,6 +78,9 @@ SeroBA has the following dependencies, which need to be installed:
   * KMC_tools version >= 3.0
   * MUMmer version >= 3.1
 
+Once the dependencies are installed, install SeroBA using pip:
+pip3 install seroba
+
 If this dependencies are installed, you can download the latest release from this github repository,or clone the repository.
 Then run the tests:
 
