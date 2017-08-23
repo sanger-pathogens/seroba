@@ -2,14 +2,14 @@ Predicted Serotype:	09N
 Serotype predicted by ariba	:09L
 assembly from ariba as an identiy of: 	99.53	 with this serotype
 Serotype 	 Genetic Variant
-09V	pseudo	wcjE
+09N	snps	['wcjB', '789', 'ACC']
 09N	snps	['wzy', '846', 'AAC']
-09N	snps	['wcjA', '852', 'TCA']
+09N	snps	['wcjA', '429', 'AGT']
 09N	snps	['wcjA', '414', 'TAT']
+09N	snps	['wcjA', '852', 'TCA']
+09N	snps	['wcjA', '957', 'ACT']
 09N	snps	['wcjA', '636', 'AAT']
 09N	snps	['wcjA', '528', 'GGT']
-09N	snps	['wcjA', '429', 'AGT']
-09N	snps	['wcjA', '957', 'ACT']
-09N	snps	['wchA', '879', 'TCA']
 09N	snps	['wchA', '504', 'TCT']
-09N	snps	['wcjB', '789', 'ACC']
+09N	snps	['wchA', '879', 'TCA']
+09V	pseudo	wcjE
