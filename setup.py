@@ -3,12 +3,12 @@ from setuptools import setup, find_packages
 
 setup(
     name='seroba',
-    version='0.1.4',
+    version='0.1.5',
     description='SEROBA: Serotyping for illumina reads',
     packages = find_packages(),
     author='Lennard Epping',
     author_email='path-help@sanger.ac.uk',
-    url='',
+    url='https://github.com/sanger-pathogens/seroba',
     scripts=glob.glob('scripts/*'),
     test_suite='nose.collector',
     tests_require=['nose >= 1.3'],

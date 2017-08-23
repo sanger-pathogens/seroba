@@ -73,10 +73,10 @@ possible so add new serotypes by adding the references sequence to the
 ### Debian Testing/Ubuntu 16.04 (Xenial)
 
 SeroBA has the following dependencies, which need to be installed:
-  * [Python3][python] version >= 3.3.2
-  * [KMC][kmc] version >= 3.0
-  * [KMC_tools][kmc_tools] version >= 3.0
-  * [MUMmer][mummer] version >= 3.1
+  * [Python3] version >= 3.3.2
+  * [KMC] version >= 3.0
+  * [KMC_tools] version >= 3.0
+  * [MUMmer]version >= 3.1
 
 If this dependencies are installed, you can download the latest release from this github repository,or clone the repository.
 Then run the tests:
