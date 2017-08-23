@@ -18,7 +18,7 @@ subparser_getPneumocat = subparsers.add_parser(
     usage='seroba getPneumocat  <database dir>',
     description='Downlaods PneumoCat and build an tsv formated meta data file out of it',
 )
-subparser_getPneumocat.add_argument('out_dir', type=str, \
+subparser_getPneumocat.add_argument('database_dir', type=str, \
     help='output directory for PneumoCat Database')
 subparser_getPneumocat.set_defaults(func=seroba.tasks.getPneumocat.run)
 
