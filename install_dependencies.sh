@@ -7,7 +7,7 @@ start_dir=$(pwd)
 KMC_VERSION=3.0.0
 MUMMER_VERSION=3.23
 BOWTIE2_VERSION=2.3.1
-CDHIT_VERSION=4.6.5
+CDHIT_VERSION=4.6.8
 
 KMC3_DOWNLOAD_URL="https://github.com/refresh-bio/KMC/releases/download/v${KMC_VERSION}/KMC3.linux.tar.gz"
 MUMMER_DOWNLOAD_URL="http://downloads.sourceforge.net/project/mummer/mummer/${MUMMER_VERSION}/MUMmer${MUMMER_VERSION}.tar.gz"
