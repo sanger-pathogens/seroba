@@ -12,6 +12,7 @@ Continue with Step 2.
 
 ############################
 
+1.
 For SeroBA 0.1.2 and smaller:
 
 ```
