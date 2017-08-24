@@ -70,26 +70,39 @@ possible so add new serotypes by adding the references sequence to the
 
 ## Installation
 
-### Debian Testing/Ubuntu 16.04 (Xenial)
+### Debian Testing
+
+Install the dependancies:
+```
+sudo apt-get update
+sudo apt-get install ariba python3-pip
+```
+
+Manually install [KMC version 3](https://github.com/refresh-bio/KMC/releases) (version 2 is the latest in Debian but is incompatible).
+Add the binaries to your PATH (e.g. in your bash profile).
+```
+mkdir kmc && cd kmc
+wget https://github.com/refresh-bio/KMC/releases/download/v3.0.0/KMC3.linux.tar.gz
+tar xvfz KMC3.linux.tar.gz
+export PATH=$PWD:$PATH
+```
+
+Finally install SeroBA:
+```
+pip3 install seroba
+```
+
+### Ubuntu 16.04 (Xenial)
 
 SeroBA has the following dependencies, which need to be installed:
   * Python3 version >= 3.3.2
   * KMC version >= 3.0
-  * KMC_tools version >= 3.0
   * MUMmer version >= 3.1
 
 Once the dependencies are installed, install SeroBA using pip:
-
-    pip3 install seroba
-
-If this dependencies are installed, you can download the latest release from this github repository,or clone the repository.
-Then run the tests:
-
-    python3 setup.py test
-
-If the tests all pass, install:
-
-    python3 setup.py install
+```
+pip3 install seroba
+```
 
 # Linux/OSX/Windows/Cloud
 ## Docker
