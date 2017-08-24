@@ -11,6 +11,7 @@ svn checkout "https://github.com/sanger-pathogens/seroba/trunk/database"
 Continue with Step 2.
 
 ############################
+
 For SeroBA 0.1.2 and smaller:
 
 ```
