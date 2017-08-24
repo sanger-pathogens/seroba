@@ -70,12 +70,31 @@ possible so add new serotypes by adding the references sequence to the
 
 ## Installation
 
-### Debian Testing
+### CentOS 7
+Ensure you have a development environment setup (you may have done this already):
+```
+yum -y update
+yum -y groupinstall 'Development Tools'
+yum -y install https://centos7.iuscommunity.org/ius-release.rpm
+```
+
+Install seroba and its dependancies:
+```
+yum -y install python36u python36u-pip python36u-devel zlib-devel wget which 
+ln -s $(which pip3.6) /usr/bin/pip3
+bash -e "$(curl -fsSL https://raw.githubusercontent.com/sanger-pathogens/seroba/master/install_dependencies.sh)"
+```
+Make sure to add the PATHs outputted by this script to your .bashrc file (or equivalent). Finally install SeroBA:
+```
+pip3 install seroba
+```
+
+### Debian Testing/ Ubuntu 17.10
 
 Install the dependancies:
 ```
 sudo apt-get update
-sudo apt-get install ariba python3-pip
+sudo apt-get install ariba python3-pip wget
 ```
 
 Manually install [KMC version 3](https://github.com/refresh-bio/KMC/releases) (version 2 is the latest in Debian but is incompatible).
@@ -93,11 +112,12 @@ pip3 install seroba
 ```
 
 ### Ubuntu 16.04 (Xenial)
-
-SeroBA has the following dependencies, which need to be installed:
-  * Python3 version >= 3.3.2
-  * KMC version >= 3.0
-  * MUMmer version >= 3.1
+Install the dependancies:
+```
+apt-get update
+apt-get install --no-install-recommends -y build-essential cd-hit curl git libbz2-dev liblzma-dev mummer python python3-dev python3-setuptools python3-pip python3-tk python3-matplotlib unzip wget zlib1g-dev
+wget -q https://raw.githubusercontent.com/sanger-pathogens/seroba/master/install_dependencies.sh && bash ./install_dependencies.sh
+```
 
 Once the dependencies are installed, install SeroBA using pip:
 ```

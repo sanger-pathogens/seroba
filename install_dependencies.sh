@@ -80,5 +80,8 @@ update_path ${build_dir}
 update_path ${mummer_dir}
 update_path ${bowtie2_dir}
 update_path ${cdhit_dir}
-pip3 install ariba pymummer
-pip install  biopython pyyaml
+
+echo "Add the following line to your ~/.bashrc profile"
+echo "export PATH=${build_dir}:${mummer_dir}:${bowtie2_dir}:${cdhit_dir}:${PATH}"
+
+pip3 install ariba pymummer biopython pyyaml
