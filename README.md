@@ -112,11 +112,12 @@ pip3 install seroba
 ```
 
 ### Ubuntu 16.04 (Xenial)
-
-SeroBA has the following dependencies, which need to be installed:
-  * Python3 version >= 3.3.2
-  * KMC version >= 3.0
-  * MUMmer version >= 3.1
+Install the dependancies:
+```
+apt-get update
+apt-get install --no-install-recommends -y build-essential cd-hit curl git libbz2-dev liblzma-dev mummer python python3-dev python3-setuptools python3-pip python3-tk python3-matplotlib unzip wget zlib1g-dev
+wget -q https://raw.githubusercontent.com/sanger-pathogens/seroba/master/install_dependencies.sh && bash ./install_dependencies.sh
+```
 
 Once the dependencies are installed, install SeroBA using pip:
 ```
