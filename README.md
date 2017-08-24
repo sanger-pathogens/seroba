@@ -9,7 +9,10 @@ For SeroBA v0.1.3 and greater, download the database provided within this git re
 svn checkout "https://github.com/sanger-pathogens/seroba/trunk/database"
 ```
 Continue with Step 2.
-1.
+
+############################
+For SeroBA 0.1.2 and smaller:
+
 ```
 usage: seroba  getPneumocat <database dir>
 
@@ -18,6 +21,8 @@ Downloads PneumoCat and build an tsv formatted meta data file out of it
 positional arguments:
   database dir      directory to store the PneumoCats capsular type variant (CTV) database
 ```
+###########################
+
 2.
 ```
 
@@ -89,7 +94,7 @@ yum -y install https://centos7.iuscommunity.org/ius-release.rpm
 
 Install seroba and its dependancies:
 ```
-yum -y install python36u python36u-pip python36u-devel zlib-devel wget which
+yum -y install python36u python36u-pip python36u-devel zlib-devel wget which python36u-tkinter
 ln -s $(which pip3.6) /usr/bin/pip3
 bash -e "$(curl -fsSL https://raw.githubusercontent.com/sanger-pathogens/seroba/master/install_dependencies.sh)"
 ```
