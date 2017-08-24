@@ -89,12 +89,12 @@ Make sure to add the PATHs outputted by this script to your .bashrc file (or equ
 pip3 install seroba
 ```
 
-### Debian Testing
+### Debian Testing/ Ubuntu 17.10
 
 Install the dependancies:
 ```
 sudo apt-get update
-sudo apt-get install ariba python3-pip
+sudo apt-get install ariba python3-pip wget
 ```
 
 Manually install [KMC version 3](https://github.com/refresh-bio/KMC/releases) (version 2 is the latest in Debian but is incompatible).
