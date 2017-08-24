@@ -80,5 +80,4 @@ update_path ${build_dir}
 update_path ${mummer_dir}
 update_path ${bowtie2_dir}
 update_path ${cdhit_dir}
-pip3 install ariba pymummer
-pip install  biopython pyyaml
+pip3 install ariba pymummer biopython pyyaml

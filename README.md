@@ -1,7 +1,15 @@
 # SeroBA
 SeroBA is a k-mer based Pipeline to identify the Serotype from Illumina NGS reads for given references. You can use SeroBA to download references from (https://github.com/phe-bioinformatics/PneumoCaT) to do identify the capsular type of Streptococcus pneumoniae.
 ## Usage
-Since SeroBA v0.1.3 an updated variant of the CTV from PneumoCat is provided in the SeroBA package. This includes the serotypes 6E, 6F, 11E, 10X, 39X and two NT references. It is not necessary to use SeroBA getPneumocat. You can directly start with seroba createDBs with the database folder from this repository. It is recommended to make a working copy of it.
+Since SeroBA v0.1.3 an updated variant of the CTV from PneumoCat is provided in the SeroBA package. This includes the serotypes 6E, 6F, 11E, 10X, 39X and two NT references. It is not necessary to use SeroBA getPneumocat.
+
+For SeroBA v0.1.3 and greater, download the database provided within this git repository:
+  * Install svn
+```
+svn checkout "https://github.com/sanger-pathogens/seroba/trunk/database"
+```
+Continue with Step 2.
+1.
 ```
 usage: seroba  getPneumocat <database dir>
 
@@ -9,7 +17,9 @@ Downloads PneumoCat and build an tsv formatted meta data file out of it
 
 positional arguments:
   database dir      directory to store the PneumoCats capsular type variant (CTV) database
-
+```
+2.
+```
 
 usage: seroba createDBs  <database dir> <kmer size>
 
@@ -38,7 +48,6 @@ Identify serotype of your input data
       --noclean NOCLEAN  Do not clean up intermediate files (assemblies, ariba
                          report)
       --coverage COVERAGE  threshold for k-mer coverage of the reference sequence (default = 20)                         
-
 
 
 
@@ -98,6 +107,15 @@ SeroBA has the following dependencies, which need to be installed:
   * Python3 version >= 3.3.2
   * KMC version >= 3.0
   * MUMmer version >= 3.1
+```
+sudo  apt-get update
+sudo apt-get install -y python3-dev python3-pip python3-tk zlib1g-dev bowtie2 mummer cd-hit
+export ARIBA_CDHIT=cdhit-est
+mkdir kmc && cd kmc
+wget https://github.com/refresh-bio/KMC/releases/download/v3.0.0/KMC3.linux.tar.gz
+tar xvfz KMC3.linux.tar.gz
+export PATH=$PWD:$PATH
+```
 
 Once the dependencies are installed, install SeroBA using pip:
 ```
