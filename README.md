@@ -3,7 +3,7 @@ SeroBA is a k-mer based Pipeline to identify the Serotype from Illumina NGS read
 ## Usage
 Since SeroBA v0.1.3 an updated variant of the CTV from PneumoCat is provided in the SeroBA package. This includes the serotypes 6E, 6F, 11E, 10X, 39X and two NT references. It is not necessary to use SeroBA getPneumocat.
 
-For SeroBA v0.1.3 and greater, download the database provided within this git repository:
+For SeroBA version 0.1.3 and greater, download the database provided within this git repository:
   * Install svn
 ```
 svn checkout "https://github.com/sanger-pathogens/seroba/trunk/database"
@@ -13,7 +13,7 @@ Continue with Step 2.
 ############################
 
 1.
-For SeroBA 0.1.2 and smaller:
+For SeroBA version 0.1.2 and smaller:
 
 ```
 usage: seroba  getPneumocat <database dir>
