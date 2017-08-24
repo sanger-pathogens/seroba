@@ -1,7 +1,20 @@
 # SeroBA
 SeroBA is a k-mer based Pipeline to identify the Serotype from Illumina NGS reads for given references. You can use SeroBA to download references from (https://github.com/phe-bioinformatics/PneumoCaT) to do identify the capsular type of Streptococcus pneumoniae.
 ## Usage
-Since SeroBA v0.1.3 an updated variant of the CTV from PneumoCat is provided in the SeroBA package. This includes the serotypes 6E, 6F, 11E, 10X, 39X and two NT references. It is not necessary to use SeroBA getPneumocat. You can directly start with seroba createDBs with the database folder from this repository. It is recommended to make a working copy of it.
+Since SeroBA v0.1.3 an updated variant of the CTV from PneumoCat is provided in the SeroBA package. This includes the serotypes 6E, 6F, 11E, 10X, 39X and two NT references. It is not necessary to use SeroBA getPneumocat.
+
+For SeroBA version 0.1.3 and greater, download the database provided within this git repository:
+  * Install svn
+```
+svn checkout "https://github.com/sanger-pathogens/seroba/trunk/database"
+```
+Continue with Step 2.
+
+############################
+
+1.
+For SeroBA version 0.1.2 and smaller:
+
 ```
 usage: seroba  getPneumocat <database dir>
 
@@ -9,7 +22,11 @@ Downloads PneumoCat and build an tsv formatted meta data file out of it
 
 positional arguments:
   database dir      directory to store the PneumoCats capsular type variant (CTV) database
+```
+###########################
 
+2.
+```
 
 usage: seroba createDBs  <database dir> <kmer size>
 
@@ -38,7 +55,6 @@ Identify serotype of your input data
       --noclean NOCLEAN  Do not clean up intermediate files (assemblies, ariba
                          report)
       --coverage COVERAGE  threshold for k-mer coverage of the reference sequence (default = 20)                         
-
 
 
 
@@ -80,9 +96,9 @@ yum -y install https://centos7.iuscommunity.org/ius-release.rpm
 
 Install seroba and its dependancies:
 ```
-yum -y install python36u python36u-pip python36u-devel zlib-devel wget which 
+yum -y install python36u python36u-pip python36u-devel zlib-devel wget which python36u-tkinter
 ln -s $(which pip3.6) /usr/bin/pip3
-bash -e "$(curl -fsSL https://raw.githubusercontent.com/sanger-pathogens/seroba/master/install_dependencies.sh)"
+bash <(curl -fsSL https://raw.githubusercontent.com/sanger-pathogens/seroba/master/install_dependencies.sh)
 ```
 Make sure to add the PATHs outputted by this script to your .bashrc file (or equivalent). Finally install SeroBA:
 ```
@@ -112,6 +128,13 @@ pip3 install seroba
 ```
 
 ### Ubuntu 16.04 (Xenial)
+
+
+SeroBA has the following dependencies, which need to be installed:
+  * Python3 version >= 3.3.2
+  * KMC version >= 3.0
+  * MUMmer version >= 3.1
+
 Install the dependancies:
 ```
 apt-get update
