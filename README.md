@@ -98,7 +98,7 @@ Install seroba and its dependancies:
 ```
 yum -y install python36u python36u-pip python36u-devel zlib-devel wget which python36u-tkinter
 ln -s $(which pip3.6) /usr/bin/pip3
-bash -e "$(curl -fsSL https://raw.githubusercontent.com/sanger-pathogens/seroba/master/install_dependencies.sh)"
+bash <(curl -fsSL https://raw.githubusercontent.com/sanger-pathogens/seroba/master/install_dependencies.sh)
 ```
 Make sure to add the PATHs outputted by this script to your .bashrc file (or equivalent). Finally install SeroBA:
 ```
