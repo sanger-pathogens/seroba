@@ -70,6 +70,25 @@ possible so add new serotypes by adding the references sequence to the
 
 ## Installation
 
+### CentOS 7
+Ensure you have a development environment setup (you may have done this already):
+```
+yum -y update
+yum -y groupinstall 'Development Tools'
+yum -y install https://centos7.iuscommunity.org/ius-release.rpm
+```
+
+Install seroba and its dependancies:
+```
+yum -y install python36u python36u-pip python36u-devel zlib-devel wget which 
+ln -s $(which pip3.6) /usr/bin/pip3
+bash -e "$(curl -fsSL https://raw.githubusercontent.com/sanger-pathogens/seroba/master/install_dependencies.sh)"
+```
+Make sure to add the PATHs outputted by this script to your .bashrc file (or equivalent). Finally install SeroBA:
+```
+pip3 install seroba
+```
+
 ### Debian Testing
 
 Install the dependancies:
