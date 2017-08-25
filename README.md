@@ -1,5 +1,11 @@
 # SeroBA
 SeroBA is a k-mer based Pipeline to identify the Serotype from Illumina NGS reads for given references. You can use SeroBA to download references from (https://github.com/phe-bioinformatics/PneumoCaT) to do identify the capsular type of Streptococcus pneumoniae.
+
+## Tutorial
+A tutorial for SeroBA can be found here:
+
+https://github.com/sanger-pathogens/pathogen-informatics-training
+
 ## Usage
 Since SeroBA v0.1.3 an updated variant of the CTV from PneumoCat is provided in the SeroBA package. This includes the serotypes 6E, 6F, 11E, 10X, 39X and two NT references. It is not necessary to use SeroBA getPneumocat.
 
