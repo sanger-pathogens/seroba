@@ -14,13 +14,12 @@ For SeroBA version 0.1.3 and greater, download the database provided within this
   * for git user:
 ```
 git clone https://github.com/sanger-pathogens/seroba.git
-```
+
 copy the databse to a directory:
-```
 cp -r seroba/database my_directory
-```
+
 delete the git repository to clean up your system:
-```
+
 rm -r seroba
 ```
 Continue with Step 2.
