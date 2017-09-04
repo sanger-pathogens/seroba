@@ -25,6 +25,7 @@ delete the git repository to clean up your system:
 rm -r seroba
 ```
   * Continue with Step 2.
+  
 for svn user:
   * Install svn
 ```
