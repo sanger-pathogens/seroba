@@ -11,7 +11,7 @@ Since SeroBA v0.1.3 an updated variant of the CTV from PneumoCat is provided in 
 
 For SeroBA version 0.1.3 and greater, download the database provided within this git repository:
 
-  * for git user:
+for git user:
 ```
 clone the git repository:
 git clone https://github.com/sanger-pathogens/seroba.git
@@ -24,13 +24,13 @@ cp -r seroba/database my_directory
 delete the git repository to clean up your system:
 rm -r seroba
 ```
-Continue with Step 2.
-  * for svn user:
-Install svn
+  * Continue with Step 2.
+for svn user:
+  * Install svn
 ```
 svn checkout "https://github.com/sanger-pathogens/seroba/trunk/database"
 ```
-Continue with Step 2.
+  * Continue with Step 2.
 
 ############################
 
