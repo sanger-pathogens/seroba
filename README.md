@@ -10,7 +10,22 @@ https://github.com/sanger-pathogens/pathogen-informatics-training
 Since SeroBA v0.1.3 an updated variant of the CTV from PneumoCat is provided in the SeroBA package. This includes the serotypes 6E, 6F, 11E, 10X, 39X and two NT references. It is not necessary to use SeroBA getPneumocat.
 
 For SeroBA version 0.1.3 and greater, download the database provided within this git repository:
-  * Install svn
+
+  * for git user:
+```
+git clone https://github.com/sanger-pathogens/seroba.git
+```
+copy the databse to a directory:
+```
+cp -r seroba/database my_directory
+```
+delete the git repository to clean up your system:
+```
+rm -r seroba
+```
+Continue with Step 2.
+  * for svn user:
+Install svn
 ```
 svn checkout "https://github.com/sanger-pathogens/seroba/trunk/database"
 ```
