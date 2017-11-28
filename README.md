@@ -25,7 +25,7 @@ delete the git repository to clean up your system:
 rm -r seroba
 ```
   * Continue with Step 2.
-  
+
 for svn user:
   * Install svn
 ```
@@ -94,10 +94,35 @@ positional arguments:
 ## Output
 In the folder 'prefix' you will find a pred.tsv including your predicted serotype
 as well as en file called detailed_serogroup_info.txt including information about
-snps, genes, and alleles that are found in your reads.
+SNP, genes, and alleles that are found in your reads.
 After the use of "seroba summary" a tsv file called summary.tsv is created that
 consists of three columns (sample Id , serotype, comments).
 Serotypes that do not match any reference are marked as "untypable"(v0.1.3).
+
+detailed_serogroup_info example:
+```
+Predicted Serotype:       23F
+Serotype predicted by ariba:    23F
+assembly from ariba has an identity of:   99.77    with this serotype
+
+Serotype       Genetic Variant
+23F            allele  wchA
+```
+In the detailed information you can see the finally predicted serotype as well as
+the serotypes that had the closest reference in that specific serogroup according
+to ARIBA. Furthermore you can see the sequence identity between the sequence assembly
+and the reference sequence.  
+## Troubleshooting
+* Case 1:
+	* SeroBA predicts 'untypable'. An 'untypable' prediction can either be a
+real 'untypable' strain or can be caused by different problems. Possible problems are:
+bad quality of your input data, submission of a wrong species or to low coverage
+of your sequenced reads. Please check your data again and run a quality control.
+
+* Case 2:
+	* 	Low alignment identity in the 'detailed_serogroup_info' file. This can
+be a hint for a mosaic serotpye.
+	* Possible solution: perform an blast search on the whole genome assembly
 
 ## Database
 You can use the CTV von PneumoCat by using seroba  getPneumocat. It is also
