@@ -7,7 +7,7 @@ A tutorial for SeroBA can be found here:
 https://github.com/sanger-pathogens/pathogen-informatics-training
 
 ## Usage
-Since SeroBA v0.1.3 an updated variant of the CTV from PneumoCat is provided in the SeroBA package. This includes the serotypes 6E, 6F, 11E, 10X, 39X and two NT references. It is not necessary to use SeroBA getPneumocat.
+Since SeroBA v0.1.3 an updated variant of the CTV from PneumoCaT is provided in the SeroBA package. This includes the serotypes 6E, 6F, 11E, 10X, 39X and two NT references. It is not necessary to use SeroBA getPneumocat.
 
 For SeroBA version 0.1.3 and greater, download the database provided within this git repository:
 
@@ -93,7 +93,7 @@ positional arguments:
 
 ## Output
 In the folder 'prefix' you will find a pred.tsv including your predicted serotype
-as well as en file called detailed_serogroup_info.txt including information about
+as well as a file called detailed_serogroup_info.txt including information about
 SNP, genes, and alleles that are found in your reads.
 After the use of "seroba summary" a tsv file called summary.tsv is created that
 consists of three columns (sample Id , serotype, comments).
@@ -125,8 +125,8 @@ be a hint for a mosaic serotpye.
 	* Possible solution: perform a blast search on the whole genome assembly
 
 ## Database
-You can use the CTV von PneumoCat by using seroba  getPneumocat. It is also
-possible so add new serotypes by adding the references sequence to the
+You can use the CTV of PneumoCaT by using seroba  getPneumocat. It is also
+possible to add new serotypes by adding the references sequence to the
 "references.fasta" file in the database folder. Out of  the information provided
  by this database a TSV file is created while using seroba createDBs. You can
  easily put in additional genetic information for any of these serotypes in the
