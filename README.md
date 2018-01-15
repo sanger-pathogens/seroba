@@ -122,7 +122,7 @@ of your sequenced reads. Please check your data again and run a quality control.
 * Case 2:
 	* 	Low alignment identity in the 'detailed_serogroup_info' file. This can
 be a hint for a mosaic serotpye.
-	* Possible solution: perform an blast search on the whole genome assembly
+	* Possible solution: perform a blast search on the whole genome assembly
 
 ## Database
 You can use the CTV von PneumoCat by using seroba  getPneumocat. It is also
