@@ -3,7 +3,7 @@
 FROM debian:testing
 
 # Install the dependancies
-RUN apt-get update -qq && apt-get install -y ariba python3-pip
+RUN apt-get update -qq && apt-get install -y ariba python3-pip git wget unzip zlib1g-dev
 
 # Get the latest code from github and install
 RUN git clone https://github.com/sanger-pathogens/ariba.git && cd ariba && python3 setup.py install
