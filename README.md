@@ -124,6 +124,13 @@ of your sequenced reads. Please check your data again and run a quality control.
 be a hint for a mosaic serotpye.
 	* Possible solution: perform a blast search on the whole genome assembly
 
+  * Case 3:
+  	* The third column in the summary.tsv indicates "contamination". This means that
+      at least one heterozygous SNP was detected in the read data with at least
+      10% of the mapped reads at the specific position supporting the SNP.
+  	* Possible solution: please check the quality of your data and have a look
+     for contamination within your reads
+
 ## Database
 You can use the CTV of PneumoCaT by using seroba  getPneumocat. It is also
 possible to add new serotypes by adding the references sequence to the
