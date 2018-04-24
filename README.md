@@ -140,6 +140,15 @@ possible to add new serotypes by adding the references sequence to the
  given format.
 
 ## Installation
+### conda
+Set up bioconda channel:
+```
+conda config --add channels bioconda
+```
+Install SeroBA:
+```
+ conda install -c bioconda seroba
+ ```
 
 ### CentOS 7
 Ensure you have a development environment setup (you may have done this already):
