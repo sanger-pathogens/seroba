@@ -8,7 +8,7 @@ SeroBA is a k-mer based Pipeline to identify the Serotype from Illumina NGS read
 [![Container ready](https://img.shields.io/badge/container-ready-brightgreen.svg)](https://quay.io/repository/biocontainers/seroba)  
 [![Docker Build Status](https://img.shields.io/docker/build/sangerpathogens/seroba.svg)](https://hub.docker.com/r/sangerpathogens/seroba)  
 [![Docker Pulls](https://img.shields.io/docker/pulls/sangerpathogens/seroba.svg)](https://hub.docker.com/r/sangerpathogens/seroba)  
-
+[![codecov](https://codecov.io/gh/sanger-pathogens/seroba/branch/master/graph/badge.svg)](https://codecov.io/gh/sanger-pathogens/seroba)
 
 ## Contents
   * [Introduction](#introduction)
