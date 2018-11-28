@@ -19,6 +19,7 @@ SeroBA is a k-mer based Pipeline to identify the Serotype from Illumina NGS read
     * [Debian Testing/ Ubuntu 17\.10](#debian-testing-ubuntu-1710)
     * [Ubuntu 16\.04 (Xenial)](#ubuntu-1604-xenial)
     * [Docker](#docker)
+    * [Running the tests](#running-the-tests)
   * [Usage](#usage)
     * [Setting up the database](#setting-up-the-database)
     * [Usage](#usage-1)
@@ -117,6 +118,13 @@ To use it you would use a command such as this (substituting in your directories
 ```
 docker run --rm -it -v /home/ubuntu/data:/data sangerpathogens/seroba seroba runSerotyping seroba/database /data/read_1.fastq.gz /data/read_2.fastq.gz  /data/output_folder
 ```    
+
+### Running the tests
+The test can be run from the top level directory:  
+
+```
+python setup.py test
+```
 
 ## Usage
 ### Setting up the database
