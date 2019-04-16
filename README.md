@@ -173,7 +173,7 @@ usage: seroba createDBs  <database dir> <kmer size>
 Creates a Database for kmc and ariba
 
 positional arguments:
-    database dir     output directory for kmc and ariba Database
+    database dir     output directory for kmc and ariba Database, ensure this has a trailing slash
     kmer size   kmer_size you want to use for kmc , recommended = 71
 
     usage: seroba runSerotyping [options]  <databases directory> <read1> <read2> <prefix>
