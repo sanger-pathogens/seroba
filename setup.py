@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='seroba',
-    version='1.0.0',
+    version='1.0.1',
     description='SEROBA: Serotyping for illumina reads',
     packages = find_packages(),
     author='Lennard Epping',
@@ -14,7 +14,7 @@ setup(
     tests_require=['nose >= 1.3'],
     install_requires=[
         'ariba >= 2.9.1',
-        'pymummer>=0.10.2',
+        'pymummer==0.10.3',
         'PyYAML>=3.12',
         'biopython>=1.68',
         'pyfastaq>=3.15.0'

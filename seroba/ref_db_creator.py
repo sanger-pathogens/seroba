@@ -33,7 +33,7 @@ class RefDbCreator:
 
 
         record_dict = SeqIO.to_dict(SeqIO.parse(self.ref_fasta, "fasta"))
-        serogroup_fasta = os.path.join(os.path.dirname(self.out_dir),'streptococcus-pneumoniae-ctvdb',serogroup+'.fasta')
+        serogroup_fasta = os.path.join(self.out_dir,'streptococcus-pneumoniae-ctvdb',serogroup+'.fasta')
 
         print(os.path.isfile(serogroup_fasta))
         if os.path.isfile(serogroup_fasta):
@@ -241,7 +241,7 @@ class RefDbCreator:
 
             self._split_meta_data2serogroup(serogroup)
             self.cdhit_clusters_ref, self.cdhit_clusters_genes = self._create_cdhit_cluster_file(self.temp_dir,self.temp_meta)
-            gene_fasta =  os.path.join(os.path.dirname(self.out_dir),'streptococcus-pneumoniae-ctvdb',serogroup+'.fasta')
+            gene_fasta =  os.path.join(self.out_dir,'streptococcus-pneumoniae-ctvdb',serogroup+'.fasta')
             RefDbCreator._check_meta_data(self.temp_meta,gene_fasta)
             os.makedirs(os.path.join(self.out_dir,'ariba_db',serogroup))
             RefDbCreator._create_ariba_db(self.temp_fasta_ref,self.temp_meta_ref,self.cdhit_clusters_ref,serogroup,self.out_dir,'ref')
