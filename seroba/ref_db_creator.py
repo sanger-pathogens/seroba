@@ -156,9 +156,7 @@ class RefDbCreator:
         temp_dir = tempfile.mkdtemp(prefix = 'temp_ariba', dir=os.getcwd())
         temp_dir = os.path.join(temp_dir,'ariba')
         command = ['ariba prepareref','-f',self.ref_fasta,'--all_coding no --max_noncoding_length 50000 --cdhit_clusters',complete_cdhit_cluster, temp_dir]
-        print(' '.join(command))
         os.system(' '.join(command))
-        print(' '.join(command))
         shutil.copyfile(os.path.join(temp_dir,'02.cdhit.clusters.tsv'),os.path.join(self.out_dir,'cd_cluster.tsv'))
         shutil.rmtree(temp_dir)
 
