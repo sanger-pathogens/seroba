@@ -128,7 +128,7 @@ class RefDbCreator:
     @staticmethod
     def _create_ariba_db(fasta_file,cluster_meta_data,cdhit_clusters,serogroup,out_dir,subdir):
         ariba_dir = os.path.join(out_dir,'ariba_db',serogroup,subdir)
-        command = ['ariba prepareref','-f',fasta_file,'-m',cluster_meta_data,'--cdhit_clusters',cdhit_clusters, ariba_dir]
+        command = ['ariba prepareref','-f',fasta_file,'-m',cluster_meta_data,'--max_noncoding_length 50000 --cdhit_clusters',cdhit_clusters, ariba_dir]
         print(' '.join(command))
         os.system(' '.join(command))
 
@@ -155,8 +155,10 @@ class RefDbCreator:
     def _create_complete_ariba_db(self,complete_cdhit_cluster):
         temp_dir = tempfile.mkdtemp(prefix = 'temp_ariba', dir=os.getcwd())
         temp_dir = os.path.join(temp_dir,'ariba')
-        command = ['ariba prepareref','-f',self.ref_fasta,'--all_coding no --cdhit_clusters',complete_cdhit_cluster, temp_dir]
+        command = ['ariba prepareref','-f',self.ref_fasta,'--all_coding no --max_noncoding_length 50000 --cdhit_clusters',complete_cdhit_cluster, temp_dir]
+        print(' '.join(command))
         os.system(' '.join(command))
+        print(' '.join(command))
         shutil.copyfile(os.path.join(temp_dir,'02.cdhit.clusters.tsv'),os.path.join(self.out_dir,'cd_cluster.tsv'))
         shutil.rmtree(temp_dir)
 
