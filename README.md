@@ -43,7 +43,7 @@ SeroBA has the following dependencies:
 * MUMmer version >= 3.1
 * Ariba
 
-There are a number of ways to install SeroBA and details are provided below. If you encounter an issue when installing SeroBA please contact your local system administrator. If you encounter a bug please log it [here](https://github.com/sanger-pathogens/seroba/issues) or email us at seroba@sanger.ac.uk.
+There are a number of ways to install SeroBA and details are provided below. If you encounter an issue when installing SeroBA please contact your local system administrator. If you encounter a bug please log it [here](https://github.com/sanger-pathogens/seroba/issues).
 
 ### conda
 Set up bioconda channel:
@@ -243,7 +243,7 @@ be a hint for a mosaic serotpye.
 SeroBA is free software, licensed under [GPLv3](https://github.com/sanger-pathogens/seroba/blob/master/LICENSE)
 
 ## Feedback/Issues
-Please report any issues to the [issues page](https://github.com/sanger-pathogens/seroba/issues) or email seroba@sanger.ac.uk.
+Please report any issues to the [issues page](https://github.com/sanger-pathogens/seroba/issues).
 
 ## Citation
 __SeroBA: rapid high-throughput serotyping of Streptococcus pneumoniae from whole genome sequence data__  
