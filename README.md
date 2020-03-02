@@ -139,7 +139,7 @@ Clone the git repository:
 git clone https://github.com/sanger-pathogens/seroba.git
 ```
 
-Copy the databse to a directory:
+Copy the database to a directory:
 ```
 cp -r seroba/database my_directory
 ```
