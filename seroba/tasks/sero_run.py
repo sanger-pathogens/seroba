@@ -11,9 +11,10 @@ def run(options):
         print('Names for forwards and reverse reads does not match. Cannot continue', file=sys.stderr)
         sys.exit(1)
     sero = serotyping.Serotyping(options.databases,
-    options.read1,
-    options.read2,
-    options.prefix,
-    clean = (not options.noclean))
-    cov = options.coverage
+        options.read1,
+        options.read2,
+        options.prefix,
+        clean = (not options.noclean),
+        cov = options.coverage
+    )
     sero.run()
