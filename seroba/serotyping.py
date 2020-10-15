@@ -12,7 +12,6 @@ import shutil
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
 from Bio.Seq import Seq
-from Bio.Alphabet import generic_dna
 import copy
 
 class Error (Exception): pass
