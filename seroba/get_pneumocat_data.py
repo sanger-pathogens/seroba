@@ -3,7 +3,6 @@ import yaml
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
 from Bio.Seq import Seq
-from Bio.Alphabet import generic_dna
 import shutil
 import tempfile
 import tarfile
