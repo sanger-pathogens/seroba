@@ -98,7 +98,7 @@ class GetPneumocatData:
     def run(self):
         wd  = os.getcwd()
         os.makedirs(self.out_dir)
-        self.tmpdir = tempfile.mkdtemp(prefix ='pneumo.temp', dir=wd)
+        self.tmpdir = tempfile.mkdtemp(prefix ='pneumo.temp')
         os.chdir(self.tmpdir)
         self._get_pneumocat_db()
         self._pneumocat_db_2_tsv(self.serogroup_dir,self.out_file)

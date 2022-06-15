@@ -13,7 +13,7 @@ class TestKMC(unittest.TestCase):
         expected = os.path.join(data_dir,'expected_fa_database')
         sequence_file = os.path.join(data_dir,'test_build_kmc_database.fa')
         kmer_size = '51'
-        tmp_dir = tempfile.mkdtemp(prefix = 'temp.kmc', dir=os.getcwd())
+        tmp_dir = tempfile.mkdtemp(prefix = 'temp.kmc')
         got = kmc.run_kmc(sequence_file,kmer_size,tmp_dir,'count')
         trans_got = os.path.join(tmp_dir,'test_db')
         os.system(ext_progs.exe('kmc_tools')+' transform '+got+' histogram '+ trans_got)
@@ -24,7 +24,7 @@ class TestKMC(unittest.TestCase):
         expected = os.path.join(data_dir,'test_build_kmc_read_hist')
         sequence_file = os.path.join(data_dir,'test_build_kmc_read.fq.gz')
         kmer_size = '51'
-        tmp_dir = tempfile.mkdtemp(prefix = 'temp.kmc', dir=os.getcwd())
+        tmp_dir = tempfile.mkdtemp(prefix = 'temp.kmc')
         got = kmc.run_kmc(sequence_file,kmer_size,tmp_dir,'count')
         trans_got = os.path.join(tmp_dir,'test_db')
         os.system(ext_progs.exe('kmc_tools')+' transform '+got+' histogram '+ trans_got)
