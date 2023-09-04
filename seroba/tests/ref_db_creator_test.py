@@ -98,7 +98,7 @@ class TestRefDbCreator(unittest.TestCase):
     def test__create_cdhit_cluster_file(self):
         expected_cluster = os.path.join(data_dir,'expected_cdhit_cluster.tsv')
         meta_data = os.path.join(data_dir,'meta.tsv')
-        temp_dir = tempfile.mkdtemp(prefix = 'temp_test', dir=os.getcwd())
+        temp_dir = tempfile.mkdtemp(prefix = 'temp_test')
         ref_db_creator.RefDbCreator._create_cdhit_cluster_file(temp_dir,meta_data)
         shutil.rmtree(temp_dir)
 
@@ -129,7 +129,7 @@ class TestRefDbCreator(unittest.TestCase):
         shutil.rmtree(out_dir)
 
     def test__create_complete_cdhit_cluster(self):
-        out_dir =  tempfile.mkdtemp(prefix = 'temp_test', dir=os.getcwd())
+        out_dir =  tempfile.mkdtemp(prefix = 'temp_test')
         expected = os.path.join(data_dir,'expected_complete_cdhit_cluster')
         meta_data = os.path.join(data_dir,'test_complete_meta.tsv')
         got = ref_db_creator.RefDbCreator._create_complete_cdhit_cluster(meta_data,out_dir)

@@ -42,7 +42,7 @@ class RefDbCreator:
 
             print("no such file")
 
-        self.temp_dir = tempfile.mkdtemp(prefix = 'temp_aribaX', dir=os.getcwd())
+        self.temp_dir = tempfile.mkdtemp(prefix = 'temp_aribaX')
         self.temp_fasta_ref = os.path.join(self.temp_dir,'temp_fasta_ref.fasta')
         self.temp_meta_ref = os.path.join(self.temp_dir,'temp_meta_ref.tsv')
         self.temp_fasta_genes = os.path.join(self.temp_dir,'temp_fasta_genes.fasta')
@@ -152,7 +152,7 @@ class RefDbCreator:
 
 
     def _create_complete_ariba_db(self,complete_cdhit_cluster):
-        temp_dir = tempfile.mkdtemp(prefix = 'temp_ariba', dir=os.getcwd())
+        temp_dir = tempfile.mkdtemp(prefix = 'temp_ariba')
         temp_dir = os.path.join(temp_dir,'ariba')
         command = ['ariba prepareref','-f',self.ref_fasta,'--all_coding no --max_noncoding_length 50000 --cdhit_clusters',complete_cdhit_cluster, temp_dir]
         os.system(' '.join(command))

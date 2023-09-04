@@ -51,7 +51,7 @@ class Serotyping:
 
     def _run_kmc(self):
     #kmc on fw_read
-        temp_dir = tempfile.mkdtemp(prefix = 'temp.kmc', dir=os.getcwd())
+        temp_dir = tempfile.mkdtemp(prefix = 'temp.kmc')
         kmer_db_list = os.listdir(self.kmer_db)
         kmer_count = self.cov
         max_kmer_count = 0.0
@@ -255,7 +255,7 @@ class Serotyping:
         sub_dict = {'genes':[],'pseudo':[],'allele':[],'snps':[]}
         relevant_genetic_elements = dict.fromkeys(serotypes, sub_dict)
         allel_snp = serogroup_dict
-        tmpdir = tempfile.mkdtemp(prefix = 'temp.nucmer', dir=os.getcwd())
+        tmpdir = tempfile.mkdtemp(prefix = 'temp.nucmer')
         gene_ref = serogroup_fasta
         pymummer.nucmer.Runner(
             gene_ref,
